@@ -1,0 +1,33 @@
+-- Single line comments in Haskell "--"
+
+{- multi- line 
+comments -}
+
+main = putStrLn "Hello, world!"
+
+-------------------------------
+HOW TO USE HASKELL
+1. Create program in vs code using the extension: example.hs
+2. Create main = {-code here-}
+3. Open GHCI by navigating to the directory containing the .hs file and typing GHCI in the directory listing
+4. Compile your program by using the ":load"(:l) command: ":Load {-program name-}" 
+5. type "main" to run the main of your program
+6. Use ":reload"(:r) to update the file if editing while testing
+7. End session by using ":quit"(:q)
+
+--------------------------------
+
+Bool
+Char
+Int (fixed size)
+Integer (arbitrary size)
+Double
+String
+type1-> type2 (a function from type1 to type2)
+(type1, type2, ..., typeN) a tuple
+[type1, type2, ..., typeN] a list
+
+"=" sign declares bindings. Bindings may declare a function of one or more arguments.
+
+"let" introduces local bindngs
+
