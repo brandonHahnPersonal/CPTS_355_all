@@ -30,8 +30,8 @@ class HW3SampleTests(unittest.TestCase):
     def test_addSprints(self):
         self.assertDictEqual(addSprints(self.sprint1,self.sprint2),self.addedSprints)
 
-    # def test_addNLogs(self):
-    #     self.assertDictEqual(addNLogs(self.logList),self.sprintSummary)
+    def test_addNLogs(self):
+        self.assertDictEqual(addNLogs(self.logList),self.sprintSummary)
 
     # def test_lookupVal(self):
     #     self.assertEqual(lookupVal(self.lookupList,"x"),2)
