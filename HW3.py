@@ -8,12 +8,18 @@
 
 #inputs: dictionary of users with values as a dictionary of tasks
 #outputs: dictionary of tasks with a dictionary of users as values
+from email.policy import default
+
+
 bTest = {'John': {'task1': 5}, 'Rae': {'task1': 10, 'task2': 4}, 'Kelly': {'task1': 8, 'task3': 5}, 'Alex': {'task1': 11, 'task2': 2, 'task3': 1}, 'Aaron': {'task2': 15}, 'Ethan':{'task3': 12}, 'Helen': {'task3': 10}}
 newDict = {}
+innerDict = {}
 for key, inputTuple in bTest.items(): #iterate through entire input dict
    for tupleKey, tupleVal in inputTuple.items(): #iterate through the dict that is the value
       if len(newDict) == 0:
-         newDict.update(tupleKey)#if the dict is empty, automatically add the value
+         newDict.setdefault(tupleKey,None)#if the dict is empty, automatically add the value
+      elif tupleKey not in newDict:
+         newDict[tupleKey] = tupleVal
 
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
