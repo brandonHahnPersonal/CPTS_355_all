@@ -8,6 +8,10 @@
 
 #inputs: dictionary of users
 #outputs: dictionary of tasks
+bTest = {'John': {'task1': 5}, 'Rae': {'task1': 10, 'task2': 4}, 'Kelly': {'task1': 8, 'task3': 5}, 'Alex': {'task1': 11, 'task2': 2, 'task3': 1}, 'Aaron': {'task2': 15}, 'Ethan':{'task3': 12}, 'Helen': {'task3': 10}}
+for a, b in bTest.items():
+   for c, d in b.items():
+      print(c,"what is going on", d)
 
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
