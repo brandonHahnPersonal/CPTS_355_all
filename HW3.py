@@ -73,9 +73,9 @@ def addNLogs(logList):
 
 
 #FUNCTION DESCRIPTION: lookupVal
-   #Takes a list of dictionaries and kay, traverses list from end and returns value associated with key if in list
+   #Takes a list of dictionaries and key, traverses list from end and returns value associated with key if in list
 
-#INPUTS: list of dictionaries
+#INPUTS: list of dictionaries and key
 #OUTPUTS: Dictionary Value
 def lookupVal(L,k):
    volatileList = L.copy()
@@ -87,3 +87,13 @@ def lookupVal(L,k):
          volatileList = []
 
    return myOut
+
+
+
+#FUNCTION DESCRIPTION: lookupVal2
+   #Takes a list of tuples and key,
+
+#INPUTS: list of tuples and key
+#OUTPUTS: Dictionary Value
+def lookupVal2(L,k):
+   return None
