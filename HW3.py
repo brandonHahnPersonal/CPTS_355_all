@@ -72,6 +72,21 @@ def addNLogs(logList):
 
 
 
+#FUNCTION DESCRIPTION: addNLogs
+   #Takes a list of dictionaries and returns dictionary of summed items
+
+#INPUTS: list of dictionaries
+#OUTPUTS: Dictionary Value
+def lookUpVal(L,k):
+   myOut = None
+   while len(L) >0:
+      a = L.pop()
+      if k in a:
+         myOut = a[k]
+         L = []
+
+   return myOut
 
 
-
+lookupList = [{"x":1,"y":True,"z":"found"},{"x":2},{"y":False}]
+lookUpVal(lookupList,"x")
