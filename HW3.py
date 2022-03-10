@@ -94,6 +94,7 @@ def lookupVal(L,k):
 #FUNCTION DESCRIPTION: lookupVal2
    #Takes a list of tuples and key,
    #start at the end. If the key is not in the dict items value, then go to the dict element in the list denoted by the key
+   #CONDITION: tuples are ordered by the first item
 #INPUTS: list of tuples and key
 #OUTPUTS: Dictionary Value
 def lookupVal2(L,k):
@@ -109,3 +110,34 @@ def lookupVal2(L,k):
       while len(volatileList) > lastDictInList[0] + 1:
          dummyVar = volatileList.pop() # I want to pop elements off the volatile list until the list length is in correspondence with the tuple index item
    return lookupVal2(volatileList,k)
+
+
+#FUNCTION DESCRIPTION: unzip
+   #takes a list of 3 inputs (L) and returns a tuple of lists where each list includes the first, second, or third element from each tuple respectively
+#INPUTS: list of tuples
+#OUTPUTS: tuple of lists
+def unzip(L):
+   myTuple = ()
+
+   while len(L) > 0:
+      variableTuple = L.pop()
+      if len(myTuple) >0:
+         firstElem = myTuple[0]
+         secondElem = myTuple[1]
+         thirdElem = myTuple[2]
+         firstElem = firstElem, variableTuple[0]
+         secondElem = secondElem, variableTuple[1]
+         thirdElem = thirdElem, variableTuple[2]
+         myTuple = firstElem, secondElem, thirdElem
+      else:
+         firstElem = variableTuple[0]
+         secondElem = variableTuple[1]
+         thirdElem = variableTuple[2]
+         myTuple = firstElem, secondElem, thirdElem
+
+   return myTuple
+
+
+zipList = ([(1,"a",{1:"a"}),(2,"b",{2:"b"}),(3,"c",{3:"c"}),(4,"d",{4:"d"})])
+a = unzip(zipList)
+b = 0
