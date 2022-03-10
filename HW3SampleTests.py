@@ -33,11 +33,11 @@ class HW3SampleTests(unittest.TestCase):
     def test_addNLogs(self):
         self.assertDictEqual(addNLogs(self.logList),self.sprintSummary)
 
-    # def test_lookupVal(self):
-    #     self.assertEqual(lookupVal(self.lookupList,"x"),2)
-    #     self.assertEqual(lookupVal(self.lookupList,"y"),False)
-    #     self.assertEqual(lookupVal(self.lookupList,"z"),"found")
-    #     self.assertEqual(lookupVal(self.lookupList,"t"),None)
+    def test_lookupVal(self):
+        self.assertEqual(lookupVal(self.lookupList,"x"),2)
+        self.assertEqual(lookupVal(self.lookupList,"y"),False)
+        self.assertEqual(lookupVal(self.lookupList,"z"),"found")
+        self.assertEqual(lookupVal(self.lookupList,"t"),None)
 
     # def test_lookupVal2(self):
     #     pass
