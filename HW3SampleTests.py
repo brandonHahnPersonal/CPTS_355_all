@@ -39,8 +39,8 @@ class HW3SampleTests(unittest.TestCase):
         self.assertEqual(lookupVal(self.lookupList,"z"),"found")
         self.assertEqual(lookupVal(self.lookupList,"t"),None)
 
-    # def test_lookupVal2(self):
-    #     pass
+    def test_lookupVal2(self):
+        pass
 
     # def test_unzip(self):
     #     pass

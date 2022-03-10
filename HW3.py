@@ -11,6 +11,7 @@
 
 #INPUTS: dictionary of users with values as a dictionary of tasks
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
+from ast import Pass, While
 
 
 def sprintLog (sprint):
@@ -92,8 +93,28 @@ def lookupVal(L,k):
 
 #FUNCTION DESCRIPTION: lookupVal2
    #Takes a list of tuples and key,
-
+   #start at the end. If the key is not in the dict items value, then go to the dict element in the list denoted by the key
 #INPUTS: list of tuples and key
 #OUTPUTS: Dictionary Value
 def lookupVal2(L,k):
-   return None
+   volatileList = L.copy()
+   if len(L) == 0:
+      return None
+   lastDictInList = volatileList.pop()
+   lastDictVals = lastDictInList[1]
+   if k in lastDictVals:
+      myOut = lastDictVals.get(k)
+      return myOut
+   else:
+      while len(volatileList) > lastDictInList[0] + 1:
+         dummyVar = volatileList.pop() # I want to pop elements off the volatile list until the list length is in correspondence with the tuple index item
+   return lookupVal2(volatileList,k)
+
+
+
+lu2 = [(0,{"x":0,"y":True,"z":"zero"}), (0,{"x":1}), (1,{"y":False}), (1,{"x":3, "z":"three"}), (2,{})]
+a = lookupVal2(lu2,"x") #should return 1
+b = lookupVal2(lu2,"y") #should return False
+c = lookupVal2(lu2,"z") #should return "zero"
+d = lookupVal2(lu2,"t") #should return None
+a = 6
