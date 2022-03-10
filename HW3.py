@@ -57,13 +57,6 @@ def addSprints(sprint1,sprint2):
    return twoSummed
 
 
-
-def helpMe(inputList):
-   if len(inputList) ==0:
-      return {}
-   else:
-      vx = inputList.pop()
-      return addSprints(vx,helpMe)
 #FUNCTION DESCRIPTION:
    #Takes a list of dictionaries and returns dictionary of summed items
    #grab dict elements from the list, then call my dictionary adder
@@ -71,15 +64,19 @@ def helpMe(inputList):
 #INPUTS: list of dictionaries
 #OUTPUTS: Dictionary
 def addNLogs(logList):
-   myOut = helpMe(logList)
+   myOut = {}
+   while len(logList) >0:
+      a = logList.pop()
+      a = sprintLog(a)
+      myOut = addSprints(myOut,a)
    return myOut
 
 
-dict1 = {'brandon': 6}
-dict2 = {'Mark': 7}
+dict1 = {'John': {'task1': 5}, 'Rae': {'task1': 10, 'task2': 4}, 'Kelly': {'task1': 8, 'task3': 5}, 'Alex': {'task1': 11, 'task2': 2, 'task3': 1}, 'Aaron': {'task2': 15}, 'Ethan':{'task3': 12}, 'Helen': {'task3': 10}}
+dict2 = {'Mark': {'task1': 5, 'task2': 2}, 'Kelly': {'task1': 10}, 'Alex': {'task1': 15, 'task2': 2}, 'Rae': {'task2': 10}, 'Aaron': {'task2': 10}, 'Helen': {'task4': 16}}
 dict3 = {'Aaron': {'task5': 15, 'task6': 8}, 'Rae': {'task5': 20}, 'Helen': {'task6': 16}}
 dict4 = {'Alex': {'task6': 15}, 'Kelly': {'task5': 20}, 'Helen': {'task6': 10}}
-bList = [dict1,dict2]
+bList = [dict1,dict2,dict3,dict4]
 addNLogs(bList)
 bCopy = bList
 v1 = bCopy.pop()
