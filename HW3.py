@@ -117,24 +117,21 @@ def lookupVal2(L,k):
 #INPUTS: list of tuples
 #OUTPUTS: tuple of lists
 def unzip(L):
-   myTuple = ()
+   myTuple = ([],[],[])
+   volatileList = L.copy()
+   L1 = []
+   L2 = []
+   L3 = []
+   while len(volatileList) > 0:
+      variableTuple = volatileList.pop()
+      L1.append(variableTuple[0])
+      L2.append(variableTuple[1])
+      L3.append(variableTuple[2])
 
-   while len(L) > 0:
-      variableTuple = L.pop()
-      if len(myTuple) >0:
-         firstElem = myTuple[0]
-         secondElem = myTuple[1]
-         thirdElem = myTuple[2]
-         firstElem = firstElem, variableTuple[0]
-         secondElem = secondElem, variableTuple[1]
-         thirdElem = thirdElem, variableTuple[2]
-         myTuple = firstElem, secondElem, thirdElem
-      else:
-         firstElem = variableTuple[0]
-         secondElem = variableTuple[1]
-         thirdElem = variableTuple[2]
-         myTuple = firstElem, secondElem, thirdElem
-
+   while len(myTuple[0]) < len(L[0]) +1:
+      myTuple[0].append(L1.pop())
+      myTuple[1].append(L2.pop())
+      myTuple[2].append(L3.pop())
    return myTuple
 
 
