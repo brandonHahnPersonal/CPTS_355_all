@@ -3,6 +3,9 @@
 #possibly connected to github?
 
 
+
+
+
 #FUNCTION DESCRIPTION:
    #A funciton that takes a dictionary of users and returns a dictionary of tasks,
    #where each task is associated with the users who worked on the task.
@@ -11,6 +14,9 @@
 
 #INPUTS: dictionary of users with values as a dictionary of tasks
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
+from hashlib import new
+
+
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
    newDict = {}
@@ -53,3 +59,22 @@ def addSprints(sprint1,sprint2):
                            inputTuple1[inValsKey1] = innerVal1 + innerVal2
 
    return twoSummed
+
+
+
+
+#FUNCTION DESCRIPTION:
+   #Takes a list of dictionaries and returns dictionary of summed items
+   #grab dict elements from the list, then call my dictionary adder
+
+#INPUTS: lsit of dictionaries
+#OUTPUTS: Dictionary
+def addNLogs(logList):
+   volatileList = logList
+   summedDict = {}
+   if len(volatileList) == 0:
+      return summedDict
+   else:
+      addSprints(summedDict,volatileList.pop())
+
+
