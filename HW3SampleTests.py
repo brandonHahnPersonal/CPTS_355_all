@@ -27,39 +27,39 @@ class HW3SampleTests(unittest.TestCase):
         self.assertDictEqual(sprintLog(self.log1),self.sprint1)
         self.assertDictEqual(sprintLog(self.log2),self.sprint2)
 
-    def test_addSprints(self):
-        self.assertDictEqual(addSprints(self.sprint1,self.sprint2),self.addedSprints)
+    # def test_addSprints(self):
+    #     self.assertDictEqual(addSprints(self.sprint1,self.sprint2),self.addedSprints)
 
-    def test_addNLogs(self):
-        self.assertDictEqual(addNLogs(self.logList),self.sprintSummary)
+    # def test_addNLogs(self):
+    #     self.assertDictEqual(addNLogs(self.logList),self.sprintSummary)
 
-    def test_lookupVal(self):
-        self.assertEqual(lookupVal(self.lookupList,"x"),2)
-        self.assertEqual(lookupVal(self.lookupList,"y"),False)
-        self.assertEqual(lookupVal(self.lookupList,"z"),"found")
-        self.assertEqual(lookupVal(self.lookupList,"t"),None)
+    # def test_lookupVal(self):
+    #     self.assertEqual(lookupVal(self.lookupList,"x"),2)
+    #     self.assertEqual(lookupVal(self.lookupList,"y"),False)
+    #     self.assertEqual(lookupVal(self.lookupList,"z"),"found")
+    #     self.assertEqual(lookupVal(self.lookupList,"t"),None)
 
-    def test_lookupVal2(self):
-        pass
+    # def test_lookupVal2(self):
+    #     pass
 
-    def test_unzip(self):
-        pass
+    # def test_unzip(self):
+    #     pass
 
-    def test_numPaths(self):
-        pass
+    # def test_numPaths(self):
+    #     pass
 
-    def test_iterFile(self):
-        mywords = iterFile("testfile.txt")
-        self.assertEqual(mywords.__next__(),"CptS")
-        self.assertEqual(mywords.__next__(),"355")
-        self.assertEqual(mywords.__next__(),"Assignment")
-        restofFile = []
-        for word in mywords:
-            restofFile.append(word)
-        self.assertEqual(restofFile,self.filetokens[3:])
+    # def test_iterFile(self):
+    #     mywords = iterFile("testfile.txt")
+    #     self.assertEqual(mywords.__next__(),"CptS")
+    #     self.assertEqual(mywords.__next__(),"355")
+    #     self.assertEqual(mywords.__next__(),"Assignment")
+    #     restofFile = []
+    #     for word in mywords:
+    #         restofFile.append(word)
+    #     self.assertEqual(restofFile,self.filetokens[3:])
 
-    def test_wordHistogram(self):
-        pass
+    # def test_wordHistogram(self):
+    #     pass
 
 if __name__ == '__main__':
     unittest.main()
