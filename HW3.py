@@ -65,10 +65,20 @@ def sprintLog (sprint):
 #OUTPUTS: Dictionary
 def addSprints(sprint1,sprint2):
    """This function takes two dictionary items and combines them: pairing existing keys with values, or adding new key/value pairs"""
-   twoSummed = sprint1.copy()
+   twoSummed = sprint1.copy() #copy the first input dictionary
 
-   #for key1, inputTuple1 in sprint1.items(): #iterate through entire input dict
-
-   
+   for key2, inputTuple2 in sprint2.items(): #iterate through entire input2 dictionary
+      if key2 not in twoSummed:
+         twoSummed[key2] = inputTuple2 #If the second dictionary contains a key that is not in the first one, add the keyvalue into the return dict
+      elif key2 in twoSummed:
+         for key1, inputTuple1 in twoSummed.items(): #iterate to find the matching keys
+            if key2 == key1: #if the keys match, I need to search within the values for matching keys
+               for inValsKey2, innerVal2 in inputTuple2.items():
+                  if inValsKey2 not in inputTuple1:
+                     inputTuple1.update({inValsKey2:innerVal2}) #update destroys
+                  else:
+                     for inValsKey1, innerVal1 in inputTuple1.items():
+                        if inValsKey2 == inValsKey1:
+                           inputTuple1[inValsKey1] = innerVal1 + innerVal2
 
    return twoSummed
