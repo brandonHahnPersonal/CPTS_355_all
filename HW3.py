@@ -2,35 +2,6 @@
 # Assignment: CPTS 355 HW3
 #possibly connected to github?
 
-from ast import Pass
-
-
-bTest = {'task1': {'John': 5, 'Rae': 10, 'Kelly': 8, 'Alex': 11}, 'task2': {'Rae': 4, 'Alex': 2, 'Aaron': 15}, 'task3': {'Kelly': 5, 'Alex': 1, 'Ethan': 12, 'Helen': 10}}
-input2 = {'task1': {'Mark': 5, 'Kelly': 10, 'Alex': 15}, 'task2': {'Mark': 2, 'Alex': 2, 'Rae': 10, 'Aaron': 10}, 'task4': {'Helen': 16}}
-twoSummed = bTest.copy() #copy the first input dictionary
-
-for key2, inputTuple2 in input2.items(): #iterate through entire input2 dictionary
-   if key2 not in twoSummed:
-      twoSummed[key2] = inputTuple2 #If the second dictionary contains a key that is not in the first one, add the keyvalue into the return dict
-   elif key2 in twoSummed:
-      for key1, inputTuple1 in twoSummed.items(): #iterate to find the matching keys
-         if key2 == key1: #if the keys match, I need to search within the values for matching keys
-            for inValsKey2, innerVal2 in inputTuple2.items():
-               if inValsKey2 not in inputTuple1:
-                  inputTuple1.update({inValsKey2:innerVal2}) #update destroys
-               else:
-                  for inValsKey1, innerVal1 in inputTuple1.items():
-                     if inValsKey2 == inValsKey1:
-                        inputTuple1[inValsKey1] = innerVal1 + innerVal2
-
-            
-
-   else:
-      Pass
-Pass
-
-
-
 
 #FUNCTION DESCRIPTION:
    #A funciton that takes a dictionary of users and returns a dictionary of tasks,
