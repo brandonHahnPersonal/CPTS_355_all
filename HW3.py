@@ -17,9 +17,14 @@ emptyDict = {}
 for key, inputTuple in bTest.items(): #iterate through entire input dict
    for tupleKey, tupleVal in inputTuple.items(): #iterate through the dict that is the value
       if len(newDict) == 0:
-         newDict.setdefault(tupleKey,emptyDict)#if the dict is empty, automatically add the value
+         newDict.setdefault(tupleKey,{})#if the dict is empty, automatically add the value
       elif tupleKey not in newDict:
-         newDict[tupleKey] = emptyDict   #if the key is not in the dict, put it in the new dict with an empty dict as the value
+         newDict[tupleKey] = {}   #if the key is not in the dict, put it in the new dict with an empty dict as the value
+      
+      newDict[tupleKey][key] = tupleVal   #add the original key as an inner key in the value of the new dict.
+         #The value of the new inner key is set to the innermost value of the input dictionary
+   
+
 
 
 def sprintLog (sprint):
