@@ -3,9 +3,6 @@
 #possibly connected to github?
 
 
-
-
-
 #FUNCTION DESCRIPTION:
    #A funciton that takes a dictionary of users and returns a dictionary of tasks,
    #where each task is associated with the users who worked on the task.
@@ -14,7 +11,6 @@
 
 #INPUTS: dictionary of users with values as a dictionary of tasks
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
-from hashlib import new
 
 
 def sprintLog (sprint):
@@ -62,19 +58,33 @@ def addSprints(sprint1,sprint2):
 
 
 
-
+def helpMe(inputList):
+   if len(inputList) ==0:
+      return {}
+   else:
+      vx = inputList.pop()
+      return addSprints(vx,helpMe)
 #FUNCTION DESCRIPTION:
    #Takes a list of dictionaries and returns dictionary of summed items
    #grab dict elements from the list, then call my dictionary adder
 
-#INPUTS: lsit of dictionaries
+#INPUTS: list of dictionaries
 #OUTPUTS: Dictionary
 def addNLogs(logList):
-   volatileList = logList
-   summedDict = {}
-   if len(volatileList) == 0:
-      return summedDict
-   else:
-      addSprints(summedDict,volatileList.pop())
+   myOut = helpMe(logList)
+   return myOut
+
+
+dict1 = {'brandon': 6}
+dict2 = {'Mark': 7}
+dict3 = {'Aaron': {'task5': 15, 'task6': 8}, 'Rae': {'task5': 20}, 'Helen': {'task6': 16}}
+dict4 = {'Alex': {'task6': 15}, 'Kelly': {'task5': 20}, 'Helen': {'task6': 10}}
+bList = [dict1,dict2]
+addNLogs(bList)
+bCopy = bList
+v1 = bCopy.pop()
+v2 = bCopy.pop()
+v3 = addSprints(v1,v2)
+
 
 
