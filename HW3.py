@@ -109,12 +109,3 @@ def lookupVal2(L,k):
       while len(volatileList) > lastDictInList[0] + 1:
          dummyVar = volatileList.pop() # I want to pop elements off the volatile list until the list length is in correspondence with the tuple index item
    return lookupVal2(volatileList,k)
-
-
-
-lu2 = [(0,{"x":0,"y":True,"z":"zero"}), (0,{"x":1}), (1,{"y":False}), (1,{"x":3, "z":"three"}), (2,{})]
-a = lookupVal2(lu2,"x") #should return 1
-b = lookupVal2(lu2,"y") #should return False
-c = lookupVal2(lu2,"z") #should return "zero"
-d = lookupVal2(lu2,"t") #should return None
-a = 6
