@@ -13,13 +13,14 @@ from email.policy import default
 
 bTest = {'John': {'task1': 5}, 'Rae': {'task1': 10, 'task2': 4}, 'Kelly': {'task1': 8, 'task3': 5}, 'Alex': {'task1': 11, 'task2': 2, 'task3': 1}, 'Aaron': {'task2': 15}, 'Ethan':{'task3': 12}, 'Helen': {'task3': 10}}
 newDict = {}
-innerDict = {}
+emptyDict = {}
 for key, inputTuple in bTest.items(): #iterate through entire input dict
    for tupleKey, tupleVal in inputTuple.items(): #iterate through the dict that is the value
       if len(newDict) == 0:
-         newDict.setdefault(tupleKey,None)#if the dict is empty, automatically add the value
+         newDict.setdefault(tupleKey,emptyDict)#if the dict is empty, automatically add the value
       elif tupleKey not in newDict:
-         newDict[tupleKey] = tupleVal
+         newDict[tupleKey] = emptyDict   #if the key is not in the dict, put it in the new dict with an empty dict as the value
+
 
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
@@ -29,5 +30,5 @@ def sprintLog (sprint):
       for tupleKey, tupleVal in inputTuple.items(): #iterate through the dict that is the value
                if len(newDict) == 0:
                   newDict.update(tupleKey)#if the dict is empty, automatically add the value
-       #iterate through new data to see if the value is in it yet
+
 
