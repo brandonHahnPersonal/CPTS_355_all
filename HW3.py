@@ -141,22 +141,24 @@ def unzip(L):
    #an iterator that represents the sequence of words read from a text file. The iterator is initialized with the name of the file and
    #returns the next word from the file for each call to __next__(). The iterator ignores empty lines and end of line characters.
 
-#INPUTS: file
-#OUTPUTS: word in file
-
+#CONSTRUCTOR: takes input file
+#METHODS: __next__() prints the next word, starting at the beginning of file
 class iterFile():
 
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
       self.brandonString = brandonFile.read()
+      self.strCopy = self.brandonString
       print(self.brandonString)
 
    def __next__(self):
-      print(self.brandonString)
+      #iterate throughe self.string to until space character
+      returnString = ""
+      self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
+      for a in (self.brandonString[self.stringIndex:]):
+         self.strCopy = self.strCopy[1:] #slice the head off the copy string
+         if a == ' ':
+            print(returnString)
+            return None
+         returnString += a
 
-
-
-
-a = iterFile("testfile.txt")
-a.__next__()
-pass
