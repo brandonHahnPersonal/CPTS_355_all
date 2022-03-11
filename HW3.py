@@ -161,11 +161,10 @@ class iterFile():
          if a == '\n':
             a = ' '
 
-         if a == ' ':
+         if a == ' ' or a == None:
             #print(returnString)
             return returnString
          returnString += a
    
    def __iter__(self):
-      for item in self.brandonString:
-         yield item
+      return self
