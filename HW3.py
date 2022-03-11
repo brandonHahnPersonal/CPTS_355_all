@@ -145,10 +145,15 @@ def unzip(L):
 
 class iterFile():
    #write code here?
-   def __init__(iterableFile):
+   def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
       allFileContents = brandonFile.read()
+      print(allFileContents)
       pass
 
+   def __next__():
+      
 
-iterFile()
+
+
+iterFile("testfile.txt")
