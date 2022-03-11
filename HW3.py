@@ -134,3 +134,21 @@ def unzip(L):
       myTuple[2].append(L3.pop())
    return myTuple
 
+
+
+#FUNCTION DESCRIPTION: iteFile
+   #an iterator that represents the sequence of words read from a text file. The iterator is initialized with the name of the file and
+   #returns the next word from the file for each call to __next__(). The iterator ignores empty lines and end of line characters.
+
+#INPUTS: file
+#OUTPUTS: word in file
+
+class iterFile():
+   #write code here?
+   def __init__(iterableFile):
+      brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
+      allFileContents = brandonFile.read()
+      pass
+
+
+iterFile()
