@@ -156,15 +156,19 @@ class iterFile():
       #iterate throughe self.string to until space character
       returnString = ""
       self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
-      for a in (self.brandonString[self.stringIndex:]):
+      z = (self.brandonString[self.stringIndex:]+'')
+      for a in z:
          self.strCopy = self.strCopy[1:] #slice the head off the copy string
          if a == '\n':
             a = ' '
 
-         if a == ' ' or a == None:
+         if (a == ' ') or (a == None):
             #print(returnString)
             return returnString
          returnString += a
+         if a == z:
+            return returnString
    
    def __iter__(self):
-      return self
+      if self != None:
+         return self
