@@ -145,8 +145,6 @@ def unzip(L):
 #OUTPUTS: word in file
 
 class iterFile():
-   #write code here?
-   brandonString = ""
 
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
