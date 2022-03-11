@@ -11,8 +11,8 @@
 
 #INPUTS: dictionary of users with values as a dictionary of tasks
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
-from ast import Pass, While
-import string
+# from ast import Pass, While
+# import string
 
 
 def sprintLog (sprint):
@@ -110,6 +110,7 @@ def lookupVal2(L,k):
    else:
       while len(volatileList) > lastDictInList[0] + 1:
          dummyVar = volatileList.pop() # I want to pop elements off the volatile list until the list length is in correspondence with the tuple index item
+
    return lookupVal2(volatileList,k)
 
 
@@ -148,8 +149,8 @@ class iterFile():
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
       self.brandonString = brandonFile.read()
+      brandonFile.close()
       self.strCopy = self.brandonString
-      print(self.brandonString)
 
    def __next__(self):
       #iterate throughe self.string to until space character
@@ -157,8 +158,14 @@ class iterFile():
       self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
       for a in (self.brandonString[self.stringIndex:]):
          self.strCopy = self.strCopy[1:] #slice the head off the copy string
+         if a == '\n':
+            a = ' '
+
          if a == ' ':
-            print(returnString)
-            return None
+            #print(returnString)
+            return returnString
          returnString += a
+   
+   def __iter__(self):
+      return self
 

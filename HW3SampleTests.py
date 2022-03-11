@@ -42,21 +42,21 @@ class HW3SampleTests(unittest.TestCase):
     def test_lookupVal2(self):
         pass
 
-    # def test_unzip(self):
-    #     pass
+    def test_unzip(self):
+        pass
 
-    # def test_numPaths(self):
-    #     pass
+ #   def test_numPaths(self):
+  #      pass
 
-    # def test_iterFile(self):
-    #     mywords = iterFile("testfile.txt")
-    #     self.assertEqual(mywords.__next__(),"CptS")
-    #     self.assertEqual(mywords.__next__(),"355")
-    #     self.assertEqual(mywords.__next__(),"Assignment")
-    #     restofFile = []
-    #     for word in mywords:
-    #         restofFile.append(word)
-    #     self.assertEqual(restofFile,self.filetokens[3:])
+    def test_iterFile(self):
+        mywords = iterFile("testfile.txt")
+        self.assertEqual(mywords.__next__(),"CptS")
+        self.assertEqual(mywords.__next__(),"355")
+        self.assertEqual(mywords.__next__(),"Assignment")
+        restofFile = []
+        for word in mywords:
+            restofFile.append(word)
+        self.assertEqual(restofFile,self.filetokens[3:])
 
     # def test_wordHistogram(self):
     #     pass
