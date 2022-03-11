@@ -12,6 +12,7 @@
 #INPUTS: dictionary of users with values as a dictionary of tasks
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
 from ast import Pass, While
+import string
 
 
 def sprintLog (sprint):
@@ -145,15 +146,19 @@ def unzip(L):
 
 class iterFile():
    #write code here?
+   brandonString = ""
+
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
-      allFileContents = brandonFile.read()
-      print(allFileContents)
-      pass
+      self.brandonString = brandonFile.read()
+      print(self.brandonString)
 
-   def __next__():
-      
-
+   def __next__(self):
+      print(self.brandonString)
 
 
-iterFile("testfile.txt")
+
+
+a = iterFile("testfile.txt")
+a.__next__()
+pass
