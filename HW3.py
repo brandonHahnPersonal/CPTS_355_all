@@ -167,5 +167,5 @@ class iterFile():
          returnString += a
    
    def __iter__(self):
-      return self
-
+      for item in self.brandonString:
+         yield item
