@@ -225,6 +225,7 @@ class iterFile():
    def __iter__(self):
       for element in self.lazyGet:
          yield element
+      self.brandonFile.close()   #once finished iterating through the file: close the file
    
 
 

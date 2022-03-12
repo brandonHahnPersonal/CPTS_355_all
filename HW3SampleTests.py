@@ -46,7 +46,18 @@ class HW3SampleTests(unittest.TestCase):
         pass
 
     def test_numPaths(self):
-        x = numPaths(10,3,[(2,2),(7,1)])
+        self.assertEqual(numPaths(10,3,[(2,2),(7,1)]),27)
+        self.assertEqual(numPaths(2, 2, []), 2)
+        self.assertEqual(numPaths(2, 2, [(1, 1)]), 0)
+        self.assertEqual(numPaths(3, 3, [(2, 1), (1, 2)]), 0)
+        self.assertEqual(numPaths(3, 3, []), 6)
+        self.assertEqual(numPaths(4, 4, []), 20)
+        self.assertEqual(numPaths(5, 5, []), 70)
+        self.assertEqual(numPaths(6, 6, []), 252)
+        self.assertEqual(numPaths(7,7, []), 924)
+        self.assertEqual(numPaths(8, 8, []), 3432)
+        self.assertEqual(numPaths(6, 6, [(1,1)]), 0)
+
         pass
 
     def test_iterFile(self):
