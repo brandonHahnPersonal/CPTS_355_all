@@ -123,21 +123,40 @@ def lookupVal2(L,k):
 """Perfrms the opposite of the zip operation: giving a tuple of lists for the first, second, and third elements in input list"""
 
 def unzip(L):
-   myTuple = ([],[],[])
-   volatileList = L.copy()
-   L1 = []
-   L2 = []
-   L3 = []
-   while len(volatileList) > 0:
-      variableTuple = volatileList.pop()
-      L1.append(variableTuple[0])
-      L2.append(variableTuple[1])
-      L3.append(variableTuple[2])
+   # myTuple = ([],[],[])
+   # volatileList = L.copy()
+   # L1 = []
+   # L2 = []
+   # L3 = []
+   # while len(volatileList) > 0:
+   #    variableTuple = volatileList.pop()
+   #    L1.append(variableTuple[0])
+   #    L2.append(variableTuple[1])
+   #    L3.append(variableTuple[2])
 
-   while len(myTuple[0]) < len(L[0]) +1:
-      myTuple[0].append(L1.pop())
-      myTuple[1].append(L2.pop())
-      myTuple[2].append(L3.pop())
+   # while len(myTuple[0]) < len(L[0]) +1:
+   #    myTuple[0].append(L1.pop())
+   #    myTuple[1].append(L2.pop())
+   #    myTuple[2].append(L3.pop())
+   # return myTuple
+
+   # the commented portion is my solution with loops
+
+   # the uncommented portion utilizes built in python function and does not use loops
+      # myTuple = ([],[],[])
+   # volatileList = L.copy()
+   # L1 = []
+   # L2 = []
+   # L3 = []
+   # L1.append(L[0])
+   # L2.append(L[1])
+   # L3.append(L[2])
+      
+   zipL = list(zip(*L))
+   z1 = list(zipL[0])
+   z2 = list(zipL[1])
+   z3 = list(zipL[2])
+   myTuple = (z1,z2,z3)
    return myTuple
 
 
