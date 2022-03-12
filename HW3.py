@@ -235,16 +235,19 @@ def wordHistogram(words):
    wordDictionary = {}
    for row in histFile:
       for char in row:
-         if char == " " or char == row:         
+         if char == " "  or char == '\n' or char == row:         
             if wordStack not in wordDictionary:
                print(wordStack)
+               wordDictionary[wordStack] = 1
+            elif wordStack in wordDictionary:
+               wordDictionary[wordStack] = # val +1
             
             wordStack = ""
          else:
             wordStack = wordStack+char
             if char == row[-1]:
                print (wordStack)
-
+               wordDictionary[wordStack] = # val +1
                
       
    pass
