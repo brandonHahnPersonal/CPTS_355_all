@@ -163,6 +163,9 @@ def numPathHelper(D,R,blocks,m,n):
    leftTrace = 0
    rightTrace = 0
 
+   if (D,R) in blocks:
+      return 0
+
    leftNode = (D+1,R)
    rightNode = (D,R+1)
    if(((leftNode<n) and (leftNode not in blocks))and((rightNode<m) and (rightNode not in blocks))): # if I can create both nodes
@@ -174,10 +177,12 @@ def numPathHelper(D,R,blocks,m,n):
    if(((rightNode<m) and (rightNode not in blocks))): # if I can create right node
       rightTrace = numPathHelper(D,R+1,blocks,m,n)
 
-
    if (D == n) and (R == m):
       return 1    #trace is at the finish line
+   else:
+      return leftTrace + rightTrace
    
+
 
 
 
