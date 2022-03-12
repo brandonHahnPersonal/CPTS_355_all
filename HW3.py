@@ -152,12 +152,11 @@ def numPaths(m,n,blocks):
    if headNode in blocks:
       return 0 # there is a block in the top left corner. No paths to finish!
    
-   
    if m == 1:
       if n == 1:
          return 1 # condition of 1x1 input table
    
-   return numPathHelper(0,0,blocks,m,n)
+   return numPathHelper(1,1,blocks,m,n)
 
 def numPathHelper(D,R,blocks,m,n):
    leftTrace = 0
@@ -168,34 +167,20 @@ def numPathHelper(D,R,blocks,m,n):
 
    leftNode = (D+1,R)
    rightNode = (D,R+1)
-   if(((leftNode[0]<=n-1) and (leftNode not in blocks))and((rightNode[1]<=m-1) and (rightNode not in blocks))): # if I can create both nodes
+   if(((leftNode[0]<=n) and (leftNode not in blocks))and((rightNode[1]<=m) and (rightNode not in blocks))): # if I can create both nodes
       leftTrace = numPathHelper(D+1,R,blocks,m,n)
    
-   if(((leftNode[0]<=n-1) and (leftNode not in blocks))): # if I can create left node
+   if(((leftNode[0]<=n) and (leftNode not in blocks))): # if I can create left node
       leftTrace = numPathHelper(D+1,R,blocks,m,n)
 
-   if(((rightNode[1]<=m-1) and (rightNode not in blocks))): # if I can create right node
+   if(((rightNode[1]<=m) and (rightNode not in blocks))): # if I can create right node
       rightTrace = numPathHelper(D,R+1,blocks,m,n)
 
-   if (D == n-1) and (R == m-1):
+   if (D == n) and (R == m):
       return 1    #trace is at the finish line
    else:
       return leftTrace + rightTrace
    
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
 
 
 
