@@ -148,26 +148,45 @@ def numPaths(m,n,blocks):
    #create matrix determined by the dimmensions:
       #create lists for each dimmension then create matrix m = width, n = height
    nodeLocation = (m,n)
-
-   width = [0]*m # creates a list of zeroes
-   height = [0]*n
-   myArray = [[width],[height]]
+   headNode = (0,0)
+   if headNode in blocks:
+      return 0 # there is a block in the top left corner. No paths to finish!
+   
+   
    if m == 1:
-      return n
-   elif n == 1:
-      return m
+      if n == 1:
+         return 1 # condition of 1x1 input table
+   
+   numPathHelper(0,0,blocks)
+
+def numPathHelper(D,R,blocks,m,n):
+   leftTrace = 0
+   rightTrace = 0
+
+   leftNode = (D+1,R)
+   rightNode = (D,R+1)
+   if(((leftNode<n) and (leftNode not in blocks))and((rightNode<m) and (rightNode not in blocks))): # if I can create both nodes
+      leftTrace = numPathHelper(D+1,R,blocks,m,n)
+   
+   if(((leftNode<n) and (leftNode not in blocks))): # if I can create left node
+      leftTrace = numPathHelper(D+1,R,blocks,m,n)
+
+   if(((rightNode<m) and (rightNode not in blocks))): # if I can create right node
+      rightTrace = numPathHelper(D,R+1,blocks,m,n)
+
+
+   if (D == n) and (R == m):
+      return 1    #trace is at the finish line
+   
+
+
+
+
 
    
-   if nodeLocation in blocks:
-      return 0 # this is a dead trace!
-
-   if nodeLocation[0] < m:
-      leftPath = numPaths(m-1,n,blocks)
-
-   
 
 
-   
+
 
 
 
