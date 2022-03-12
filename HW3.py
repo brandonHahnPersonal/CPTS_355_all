@@ -148,7 +148,7 @@ def numPaths(m,n,blocks):
    #create matrix determined by the dimmensions:
       #create lists for each dimmension then create matrix m = width, n = height
    nodeLocation = (m,n)
-   headNode = (0,0)
+   headNode = (1,1)
    if headNode in blocks:
       return 0 # there is a block in the top left corner. No paths to finish!
    
@@ -162,7 +162,7 @@ def numPathHelper(D,R,blocks,m,n):
    leftTrace = 0
    rightTrace = 0
 
-   if (D,R) in blocks:
+   if (R,D) in blocks:
       return 0
 
    leftNode = (D+1,R)
