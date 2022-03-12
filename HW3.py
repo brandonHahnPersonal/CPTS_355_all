@@ -233,6 +233,7 @@ def wordHistogram(words):
    histFile = open(words)
    wordStack = ""
    wordDictionary = {}
+   histReturn = []
    for row in histFile:
       for char in row:
          if char == " "  or char == '\n' or char == row:         
@@ -240,22 +241,28 @@ def wordHistogram(words):
                print(wordStack)
                wordDictionary[wordStack] = 1
             elif wordStack in wordDictionary:
-               wordDictionary[wordStack] = # val +1
+               wordDictionary[wordStack] = wordDictionary[wordStack] + 1
             
             wordStack = ""
          else:
             wordStack = wordStack+char
-            if char == row[-1]:
-               print (wordStack)
-               wordDictionary[wordStack] = # val +1
+            if char == row[-1]: # if I reach the very last element
+               if wordStack not in wordDictionary:
+                  print(wordStack)
+                  wordDictionary[wordStack] = 1
+               elif wordStack in wordDictionary:
+                  wordDictionary[wordStack] = wordDictionary[wordStack] + 1
                
-      
-   pass
+   for item in wordDictionary:
+      histReturn.append((item, wordDictionary[item]))
    
-wordHistogram("testfile.txt")
+   histReturn.sort(reverse = True , key = lambda x: x[1])
+   return histReturn
+   
+a = wordHistogram("testfile.txt")
 
 
-
+pass
 
 
 
