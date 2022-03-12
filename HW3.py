@@ -147,18 +147,13 @@ def unzip(L):
 class iterFile():
 
    def __init__(self,iterableFile):
-      brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
-      self.__readME__(brandonFile)
+      brandonFile = open(iterableFile,'r') # open file for reading. default is read, but 'r' specifies
+      self.lazyRow = iter(self.getNext())
+      self.volatileRow = self.lazyRow.copy()
 
-   def __readME__(self):
-      self.fileRow = self.readline() # read in a line.
-      self.volatileRow = self.readLine()
-      pass
-
-   def __next__(self):
-      #iterate through self.string to until space character
+   def getNext(self):
       returnString = ""
-      self.stringIndex = len(self.fileRow) - len(self.volatileRow) #index begins at zero, when copy shrinks, the index grows
+      self.stringIndex = len(self.lazyRow) - len(self.volatileRow) #index begins at zero, when copy shrinks, the index grows
       z = (self.fileRow[self.stringIndex:])
       for a in z:
          self.strCopy = self.strCopy[1:] #slice the head off the copy string
@@ -171,11 +166,13 @@ class iterFile():
 
          if a == z:   #terminating condition
             return returnString
-      
-      pass
+
+   def __next__(self):
+      return self.lazyRow.__next__() # call next on the current iterable item
 
    def __iter__(self):
-      pass
+      for element in self.lazyRow:
+         yield element
    
 
 
