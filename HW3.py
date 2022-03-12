@@ -147,31 +147,37 @@ def unzip(L):
 class iterFile():
 
    def __init__(self,iterableFile):
-      brandonFile = open(iterableFile,'r') # open file for reading. default is read, but 'r' specifies
-      self.lazyRow = iter(self.getNext())
-      self.volatileRow = self.lazyRow.copy()
+      self.inputFile = iterableFile #string item
+      self.brandonFile = open(self.inputFile,'r') # open file for reading. default is read, but 'r' specifies
+      self.stringIndex = 0
+      self.lazyGet = iter(self.getNext())
 
    def getNext(self):
-      returnString = ""
-      self.stringIndex = len(self.lazyRow) - len(self.volatileRow) #index begins at zero, when copy shrinks, the index grows
-      z = (self.fileRow[self.stringIndex:])
-      for a in z:
-         self.strCopy = self.strCopy[1:] #slice the head off the copy string
-         if a == '\n':
-            self.__readME__
+     for realRow in self.brandonFile: # for each row
+         #iterate through self.string to until space character
+         returnString = ""
+         #self.stringIndex = len(realRow) - len(self.volatileLine) #index begins at zero, when copy shrinks, the index grows
+         if len(realRow) >0:
+            for a in realRow:
+               self.stringIndex = self.stringIndex +1 #increment the indexer
+               if a == '\n':
+                  self.stringIndex = 0 # if reach the end of line: reset the index
+                  a = ' '
 
-         if (a == ' '):
-            return returnString
-         returnString += a
+               if a != ' ':
+                  returnString += a
+               elif (a == ' '):
+                  yield returnString
+                  returnString = ""               
 
-         if a == z:   #terminating condition
-            return returnString
+               if self.stringIndex == len(realRow):    #this is the terminating condition that allows the very last character in the file to be read
+                  yield returnString      
 
    def __next__(self):
-      return self.lazyRow.__next__() # call next on the current iterable item
+      return self.lazyGet.__next__() # call next on the current iterable item
 
    def __iter__(self):
-      for element in self.lazyRow:
+      for element in self.lazyGet:
          yield element
    
 
