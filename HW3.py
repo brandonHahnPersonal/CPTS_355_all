@@ -1,7 +1,5 @@
 # Name: Brandon Hahn
 # Assignment: CPTS 355 HW3
-#possibly connected to github?
-
 
 #FUNCTION DESCRIPTION: sprintLog
    #A funciton that takes a dictionary of users and returns a dictionary of tasks,
