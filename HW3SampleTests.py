@@ -54,9 +54,9 @@ class HW3SampleTests(unittest.TestCase):
         self.assertEqual(numPaths(4, 4, []), 20)
         self.assertEqual(numPaths(5, 5, []), 70)
         self.assertEqual(numPaths(6, 6, []), 252)
-        self.assertEqual(numPaths(7,7, []), 924)
+        self.assertEqual(numPaths(7, 7, []), 924)
         self.assertEqual(numPaths(8, 8, []), 3432)
-        self.assertEqual(numPaths(6, 6, [(1,1)]), 0)
+        self.assertEqual(numPaths(6, 6, [(1,1)]), 0) # going larger than this causes it to take very long
 
         pass
 
@@ -70,8 +70,8 @@ class HW3SampleTests(unittest.TestCase):
             restofFile.append(word)
         self.assertEqual(restofFile,self.filetokens[3:])
 
-    # def test_wordHistogram(self):
-    #     pass
+    def test_wordHistogram(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()

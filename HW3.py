@@ -63,6 +63,8 @@ def addSprints(sprint1,sprint2):
 #INPUTS: list of dictionaries
 #OUTPUTS: Dictionary
 def addNLogs(logList):
+   """Combines dictionaries in list into 1 dictionary while summing the values of overlapping keys"""
+
    myOut = {}
    while len(logList) >0:
       a = logList.pop()
@@ -78,6 +80,8 @@ def addNLogs(logList):
 #INPUTS: list of dictionaries and key
 #OUTPUTS: Dictionary Value
 def lookupVal(L,k):
+   """Performs a lookup based on key input and dictionary"""
+
    volatileList = L.copy()
    myOut = None
    while len(volatileList) >0:
@@ -97,6 +101,8 @@ def lookupVal(L,k):
 #INPUTS: list of tuples and key
 #OUTPUTS: Dictionary Value
 def lookupVal2(L,k):
+   """Looking up a value based on the keys of the dictionary input. Very confusing. Uses dict pairs as steps to correct value."""
+
    volatileList = L.copy()
    if len(L) == 0:
       return None
@@ -116,6 +122,8 @@ def lookupVal2(L,k):
    #takes a list of 3 inputs (L) and returns a tuple of lists where each list includes the first, second, or third element from each tuple respectively
 #INPUTS: list of tuples
 #OUTPUTS: tuple of lists
+"""Perfrms the opposite of the zip operation: giving a tuple of lists for the first, second, and third elements in input list"""
+
 def unzip(L):
    myTuple = ([],[],[])
    volatileList = L.copy()
@@ -143,9 +151,8 @@ def unzip(L):
 #INPUTS: tuple containing dimensions and list of blocks
 #OUTPUTS: number of valid paths
 def numPaths(m,n,blocks):
-   #create matrix determined by the dimmensions:
-      #create lists for each dimmension then create matrix m = width, n = height
-   nodeLocation = (m,n)
+   """This function finds the # of paths moving down and right through a table with variable size and blocks in the path."""
+
    headNode = (1,1)
    if headNode in blocks:
       return 0 # there is a block in the top left corner. No paths to finish!
@@ -230,6 +237,8 @@ class iterFile():
 #INPUTS: an iterator representing a sequence of words
 #OUTPUTS: lsit of tuples where each tuple contains a unique word and the number of times it apepared
 def wordHistogram(words):
+   """This function takes a file containing words, and returns a list of tuples containing the word appearance count"""
+
    histFile = open(words)
    wordStack = ""
    wordDictionary = {}
@@ -258,40 +267,4 @@ def wordHistogram(words):
    
    histReturn.sort(reverse = True , key = lambda x: x[1])
    return histReturn
-   
-a = wordHistogram("testfile.txt")
 
-
-pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def brandonWordGetter(volatileString,inputString):
-   returnString = ""
-   stringIndex = len(inputString) - len(volatileString) #index begins at zero, when copy shrinks, the index grows
-   z = (inputString[stringIndex:])
-   if len(volatileString) >0:
-      for a in z:
-         volatileString = volatileString[1:] #slice the head off the copy string
-         if a == '\n':
-            a = ' '
-
-         if (a == ' '):
-            return returnString
-         returnString += a
-
-         if a == z:   #terminating condition
-            return returnString
