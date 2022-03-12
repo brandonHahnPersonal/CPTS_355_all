@@ -46,7 +46,7 @@ class HW3SampleTests(unittest.TestCase):
         pass
 
     def test_numPaths(self):
-        x = numPaths(2,1,[])
+        x = numPaths(4,4,[])
         pass
 
     def test_iterFile(self):
