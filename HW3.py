@@ -141,7 +141,7 @@ def unzip(L):
 
 
 #FUNCTION DESCRIPTION: numPaths
-   
+   # takes in table dimmensions and list of blocked out squares, uses recursion to traverse table and find number of paths
 #INPUTS: tuple containing dimensions and list of blocks
 #OUTPUTS: number of valid paths
 def numPaths(m,n,blocks):
@@ -162,7 +162,7 @@ def numPathHelper(D,R,blocks,m,n):
    leftTrace = 0
    rightTrace = 0
 
-   if (R,D) in blocks:
+   if (R,D) in blocks: # if I have hit a block somehow, get out
       return 0
 
    leftNode = (D+1,R)
@@ -179,7 +179,7 @@ def numPathHelper(D,R,blocks,m,n):
    if (D == n) and (R == m):
       return 1    #trace is at the finish line
    else:
-      return leftTrace + rightTrace
+      return leftTrace + rightTrace # summing condition to combine downpaths with right paths
    
 
 
@@ -226,46 +226,7 @@ class iterFile():
       for element in self.lazyGet:
          yield element
       self.brandonFile.close()   #once finished iterating through the file: close the file
+
+   def wordHistogram(words):
+      pass
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   #    self.brandonString = brandonFile.read()
-   #    brandonFile.close()
-   #    self.strCopy = self.brandonString
-
-   # def __next__(self):
-   #    #iterate through self.string to until space character
-   #    returnString = ""
-   #    self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
-   #    z = (self.brandonString[self.stringIndex:])
-   #    if len(self.strCopy) >0:
-   #       for a in z:
-   #          self.strCopy = self.strCopy[1:] #slice the head off the copy string
-   #          if a == '\n':
-   #             a = ' '
-
-   #          if (a == ' '):
-   #             return returnString
-   #          returnString += a
-
-   #          if a == z:   #terminating condition
-   #             return returnString
-   
-   # def __iter__(self):
-   #    for numItems in self.strCopy:
-   #       yield self.__next__()
