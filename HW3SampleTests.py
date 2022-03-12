@@ -45,8 +45,8 @@ class HW3SampleTests(unittest.TestCase):
     def test_unzip(self):
         pass
 
- #   def test_numPaths(self):
-  #      pass
+    def test_numPaths(self):
+        numPaths(2,3,0)
 
     def test_iterFile(self):
         mywords = iterFile("testfile.txt")

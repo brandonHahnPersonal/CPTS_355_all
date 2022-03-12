@@ -138,6 +138,30 @@ def unzip(L):
 
 
 
+
+
+#FUNCTION DESCRIPTION: numPaths
+   
+#INPUTS: tuple containing dimensions and list of blocks
+#OUTPUTS: number of valid paths
+def numPaths(m,n,blocks):
+   #create matrix determined by the dimmensions:
+      #create lists for each dimmension then create matrix m = width, n = height
+
+   width = [0]*m # creates a list of zeroes
+   height = [0]*n
+   myArray = [[width],[height]]
+   pass
+
+
+   
+
+
+
+
+
+
+
 #FUNCTION DESCRIPTION: iteFile
    #an iterator that represents the sequence of words read from a text file. The iterator is initialized with the name of the file and
    #returns the next word from the file for each call to __next__(). The iterator ignores empty lines and end of line characters.
