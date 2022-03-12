@@ -15,6 +15,9 @@
 # import string
 
 
+from pickle import TRUE
+
+
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
    newDict = {}
@@ -153,22 +156,23 @@ class iterFile():
       self.strCopy = self.brandonString
 
    def __next__(self):
-      #iterate throughe self.string to until space character
+      #iterate through self.string to until space character
       returnString = ""
       self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
-      z = (self.brandonString[self.stringIndex:]+'')
-      for a in z:
-         self.strCopy = self.strCopy[1:] #slice the head off the copy string
-         if a == '\n':
-            a = ' '
+      z = (self.brandonString[self.stringIndex:])
+      if len(self.strCopy) >0:
+         for a in z:
+            self.strCopy = self.strCopy[1:] #slice the head off the copy string
+            if a == '\n':
+               a = ' '
 
-         if (a == ' ') or (a == None):
-            #print(returnString)
-            return returnString
-         returnString += a
-         if a == z:
-            return returnString
+            if (a == ' '):
+               return returnString
+            returnString += a
+
+            if a == z:   #terminating condition
+               return returnString
    
    def __iter__(self):
-      if self != None:
-         return self
+      for numItems in self.strCopy:
+         yield self.__next__()
