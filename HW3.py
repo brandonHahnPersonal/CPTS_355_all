@@ -147,11 +147,24 @@ def unzip(L):
 def numPaths(m,n,blocks):
    #create matrix determined by the dimmensions:
       #create lists for each dimmension then create matrix m = width, n = height
+   nodeLocation = (m,n)
 
    width = [0]*m # creates a list of zeroes
    height = [0]*n
    myArray = [[width],[height]]
-   pass
+   if m == 1:
+      return n
+   elif n == 1:
+      return m
+
+   
+   if nodeLocation in blocks:
+      return 0 # this is a dead trace!
+
+   if nodeLocation[0] < m:
+      leftPath = numPaths(m-1,n,blocks)
+
+   
 
 
    
