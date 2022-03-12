@@ -46,7 +46,8 @@ class HW3SampleTests(unittest.TestCase):
         pass
 
     def test_numPaths(self):
-        numPaths(2,3,0)
+        x = numPaths(3,3,0)
+        pass
 
     def test_iterFile(self):
         mywords = iterFile("testfile.txt")
