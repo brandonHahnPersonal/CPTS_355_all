@@ -13,8 +13,6 @@
 #OUTPUTS: dictionary of tasks with a dictionary of users as values
 # from ast import Pass, While
 # import string
-
-
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
    newDict = {}
@@ -227,6 +225,63 @@ class iterFile():
          yield element
       self.brandonFile.close()   #once finished iterating through the file: close the file
 
-   def wordHistogram(words):
-      pass
+
+#FUNCTION DESCRIPTION: wordHistogram
+#INPUTS: an iterator representing a sequence of words
+#OUTPUTS: lsit of tuples where each tuple contains a unique word and the number of times it apepared
+def wordHistogram(words):
+   histFile = open(words)
+   wordStack = ""
+   wordDictionary = {}
+   for row in histFile:
+      for char in row:
+         if char == " " or char == row:         
+            if wordStack not in wordDictionary:
+               print(wordStack)
+            
+            wordStack = ""
+         else:
+            wordStack = wordStack+char
+            if char == row[-1]:
+               print (wordStack)
+
+               
+      
+   pass
    
+wordHistogram("testfile.txt")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def brandonWordGetter(volatileString,inputString):
+   returnString = ""
+   stringIndex = len(inputString) - len(volatileString) #index begins at zero, when copy shrinks, the index grows
+   z = (inputString[stringIndex:])
+   if len(volatileString) >0:
+      for a in z:
+         volatileString = volatileString[1:] #slice the head off the copy string
+         if a == '\n':
+            a = ' '
+
+         if (a == ' '):
+            return returnString
+         returnString += a
+
+         if a == z:   #terminating condition
+            return returnString
