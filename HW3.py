@@ -15,9 +15,6 @@
 # import string
 
 
-from pickle import TRUE
-
-
 def sprintLog (sprint):
    """This function takes a dictionary of users with associated hours, and returns a dictionary of tasks"""
    newDict = {}
@@ -151,28 +148,52 @@ class iterFile():
 
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
-      self.brandonString = brandonFile.read()
-      brandonFile.close()
-      self.strCopy = self.brandonString
 
    def __next__(self):
-      #iterate through self.string to until space character
-      returnString = ""
-      self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
-      z = (self.brandonString[self.stringIndex:])
-      if len(self.strCopy) >0:
-         for a in z:
-            self.strCopy = self.strCopy[1:] #slice the head off the copy string
-            if a == '\n':
-               a = ' '
+      pass
 
-            if (a == ' '):
-               return returnString
-            returnString += a
-
-            if a == z:   #terminating condition
-               return returnString
-   
    def __iter__(self):
-      for numItems in self.strCopy:
-         yield self.__next__()
+      pass
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   #    self.brandonString = brandonFile.read()
+   #    brandonFile.close()
+   #    self.strCopy = self.brandonString
+
+   # def __next__(self):
+   #    #iterate through self.string to until space character
+   #    returnString = ""
+   #    self.stringIndex = len(self.brandonString) - len(self.strCopy) #index begins at zero, when copy shrinks, the index grows
+   #    z = (self.brandonString[self.stringIndex:])
+   #    if len(self.strCopy) >0:
+   #       for a in z:
+   #          self.strCopy = self.strCopy[1:] #slice the head off the copy string
+   #          if a == '\n':
+   #             a = ' '
+
+   #          if (a == ' '):
+   #             return returnString
+   #          returnString += a
+
+   #          if a == z:   #terminating condition
+   #             return returnString
+   
+   # def __iter__(self):
+   #    for numItems in self.strCopy:
+   #       yield self.__next__()
