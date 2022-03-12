@@ -148,8 +148,30 @@ class iterFile():
 
    def __init__(self,iterableFile):
       brandonFile = open(iterableFile,'r') # open file for reading default is read, but 'r' specifies
+      self.__readME__(brandonFile)
+
+   def __readME__(self):
+      self.fileRow = self.readline() # read in a line.
+      self.volatileRow = self.readLine()
+      pass
 
    def __next__(self):
+      #iterate through self.string to until space character
+      returnString = ""
+      self.stringIndex = len(self.fileRow) - len(self.volatileRow) #index begins at zero, when copy shrinks, the index grows
+      z = (self.fileRow[self.stringIndex:])
+      for a in z:
+         self.strCopy = self.strCopy[1:] #slice the head off the copy string
+         if a == '\n':
+            self.__readME__
+
+         if (a == ' '):
+            return returnString
+         returnString += a
+
+         if a == z:   #terminating condition
+            return returnString
+      
       pass
 
    def __iter__(self):
