@@ -11,13 +11,13 @@ opstack = []  #assuming top of the stack is the end of the list
 def opPop():
     # opPop should return the popped value.
     # The pop() function should call opPop to pop the top value from the opstack, but it will ignore the popped value.
-    topPopped = opstack.pop()
+    topPopped = opstack.pop() # leverage the python list built in 'pop' method in helper
     return topPopped
 
 def opPush(value):
     # opPush should not return a value
     # push() should call this to push a value onto the top of the stack.
-    opstack.append(value)
+    opstack.append(value) # leverage the python list built in 'append' method in helper
 
 #-------------------------- 20% -------------------------------------
 # The dictionary stack: define the dictionary stack and its operations
