@@ -1,5 +1,6 @@
 #------------------------- 10% -------------------------------------
 # The operand stack: define the operand stack and its operations
+
 opstack = []  #assuming top of the stack is the end of the list
 
 # Now define the helper functions to push and pop values on the opstack
@@ -18,6 +19,7 @@ def opPush(value):
     # opPush should not return a value
     # push() should call this to push a value onto the top of the stack.
     opstack.append(value) # leverage the python list built in 'append' method in helper
+    # note the top of the stack is assumed to be the end of the list
 
 #-------------------------- 20% -------------------------------------
 # The dictionary stack: define the dictionary stack and its operations
@@ -27,27 +29,41 @@ dictstack = []  #assuming top of the stack is the end of the list
 # define name, and to lookup a name
 
 def dictPop():
-    pass
+    dictionaryPopValue = dictstack.pop()
+    return dictionaryPopValue
     # dictPop pops the top dictionary from the dictionary stack.
 
 def dictPush(d):
-    pass
     #dictPush pushes the dictionary ‘d’ to the dictstack.
     #Note that, your interpreter will call dictPush only when Postscript
     #“begin” operator is called. “begin” should pop the empty dictionary from
     #the opstack and push it onto the dictstack by calling dictPush.
+    dictstack.append(d)
 
 def define(name, value):
-    pass
     #add name:value pair to the top dictionary in the dictionary stack.
     #Keep the '/' in the name constant.
     #Your psDef function should pop the name and value from operand stack and
     #call the “define” function.
+    newDictTuple = {name, value}
+    dictstack.append(newDictTuple)
 
 def lookup(name):
-    pass
     # return the value associated with name
     # What is your design decision about what to do when there is no definition for “name”? If “name” is not defined, your program should not break, but should give an appropriate error message.
+    trueName = '/' + name
+    for item in dictstack:
+        if trueName in item:
+            returnVal = item.get(trueName) #actual items have the / in front.
+            return returnVal
+    
+    # if there is no definition for 'name', then throw an error message:
+    Error_000_message = 'ERROR 000: THERE IS NO DEFINITION FOR ' + trueName 
+    print()
+    print(Error_000_message)
+    print()
+    return ();
+
 
 
 #--------------------------- 10% -------------------------------------
@@ -131,4 +147,8 @@ def end():
     pass
 
 def psDef():
+    #pop 2 from op stack, call define to put a tuple onto dict stack
+    tempValue = opPop();
+    tempName = opPop();
+    define(tempName,tempValue)
     pass

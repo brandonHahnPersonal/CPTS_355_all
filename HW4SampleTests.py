@@ -5,7 +5,7 @@ from HW4 import *
 
 class HW4Tests(unittest.TestCase):
     def setUp(self):
-        pass
+        opstack = []
 
     def testOpPush(self):
         opstack.clear()
@@ -44,6 +44,7 @@ class HW4Tests(unittest.TestCase):
         opPush("(hornswaggle)")  
         psDef()
         self.assertEqual(lookup("n1"),"(hornswaggle)")
+        pass
 
     def testAdd(self):
         opstack.clear()     
