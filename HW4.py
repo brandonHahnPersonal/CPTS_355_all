@@ -73,12 +73,26 @@ def lookup(name):
 def add():
     a = opPop()
     b = opPop()
-    if ((type(a) == float | int) and (type(b) == float | int)):
-        pass
-    pass
+    if ((type(a) == float | int) and (type(b) == float) | (int):
+        result = a + b
+        opPush(result)
+    else:
+        opPush(b)
+        opPush(a)
+    
+    return None
 
 def sub():
-    pass
+    a = opPop()
+    b = opPop()
+    if ((type(a) == float | int) and (type(b) == float | int)):
+        result = a - b
+        opPush(result)
+    else:
+        opPush(b)
+        opPush(a)
+    
+    return None
 
 def mul():
     pass
