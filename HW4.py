@@ -45,8 +45,8 @@ def define(name, value):
     #Keep the '/' in the name constant.
     #Your psDef function should pop the name and value from operand stack and
     #call the “define” function.
-    newDictTuple = {name, value}
-    dictstack.append(newDictTuple)
+    newDictItem = {name: value}
+    dictPush(newDictItem)
 
 def lookup(name):
     # return the value associated with name
@@ -54,9 +54,9 @@ def lookup(name):
     trueName = '/' + name
     for item in dictstack:
         if trueName in item:
-            returnVal = item.get(trueName) #actual items have the / in front.
+            returnVal =  item.get(trueName) #actual items have the / in front.
             return returnVal
-    
+
     # if there is no definition for 'name', then throw an error message:
     Error_000_message = 'ERROR 000: THERE IS NO DEFINITION FOR ' + trueName 
     print()
@@ -71,6 +71,10 @@ def lookup(name):
 # Make sure to check the operand stack has the correct number of parameters
 # and types of the parameters are correct.
 def add():
+    a = opPop()
+    b = opPop()
+    if ((type(a) == float | int) and (type(b) == float | int)):
+        pass
     pass
 
 def sub():
