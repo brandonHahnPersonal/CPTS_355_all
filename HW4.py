@@ -18,8 +18,17 @@ opstack = []  #assuming top of the stack is the end of the list
 def opPop():
     # opPop should return the popped value.
     # The pop() function should call opPop to pop the top value from the opstack, but it will ignore the popped value.
-    topPopped = opstack.pop() # leverage the python list built in 'pop' method in helper
-    return topPopped
+    if(len(opstack)>= 1):
+        topPopped = opstack.pop() # leverage the python list built in 'pop' method in helper
+        return topPopped
+
+    else:
+        Error_000_message = 'ERROR 000: POP PERFORMED ON EMPTY LIST'
+        print()
+        print(Error_000_message)
+        print()
+        return None;
+
 
 def opPush(value):
     # opPush should not return a value
@@ -35,8 +44,12 @@ dictstack = []  #assuming top of the stack is the end of the list
 # define name, and to lookup a name
 
 def dictPop():
-    dictionaryPopValue = dictstack.pop()
-    return dictionaryPopValue
+    if(len(dictstack)>=1):
+        dictionaryPopValue = dictstack.pop()
+        return dictionaryPopValue
+
+    else:
+        return None
     # dictPop pops the top dictionary from the dictionary stack.
 
 def dictPush(d):
@@ -66,9 +79,9 @@ def lookup(name):
             return returnVal
 
     # if there is no definition for 'name', then throw an error message:
-    Error_000_message = 'ERROR 000: THERE IS NO DEFINITION FOR ' + trueName 
+    Error_001_message = 'ERROR 001: THERE IS NO DEFINITION FOR ' + trueName 
     print()
-    print(Error_000_message)
+    print(Error_001_message)
     print()
     return None;
 
