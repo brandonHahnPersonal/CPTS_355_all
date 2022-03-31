@@ -1,6 +1,10 @@
 #------------------------- 10% -------------------------------------
 # The operand stack: define the operand stack and its operations
 
+from ast import Num
+from tokenize import Number
+
+
 opstack = []  #assuming top of the stack is the end of the list
 
 # Now define the helper functions to push and pop values on the opstack
@@ -73,7 +77,7 @@ def lookup(name):
 def add():
     a = opPop()
     b = opPop()
-    if ((type(a) == float | int) and (type(b) == float) | (int):
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
         result = a + b
         opPush(result)
     else:
@@ -85,8 +89,8 @@ def add():
 def sub():
     a = opPop()
     b = opPop()
-    if ((type(a) == float | int) and (type(b) == float | int)):
-        result = a - b
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
+        result = b - a
         opPush(result)
     else:
         opPush(b)
@@ -95,33 +99,156 @@ def sub():
     return None
 
 def mul():
-    pass
+    a = opPop()
+    b = opPop()
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
+        result = a * b
+        opPush(result)
+    else:
+        opPush(b)
+        opPush(a)
+    
+    return None
 
 def div():
-    pass
+    a = opPop()
+    b = opPop()
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
+        result = b/a
+        opPush(result)
+    else:
+        opPush(b)
+        opPush(a)
+    
+    return None
 
 def mod():
-    pass
+    a = opPop()
+    b = opPop()
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
+       result = b % a
+       opPush(result)
+    else:
+        opPush(b)
+        opPush(a)
+    
+    return None
+
 
 def eq():
-    pass
+    a = opPop()
+    b = opPop()
+    if (a == b):
+       result = True
+    else:
+        result = False
+    
+    opPush(result)
+    return None
 
 def lt():
-    pass
+    a = opPop()
+    b = opPop()
+    if (a > b):
+       result = True
+    else:
+        result = False
+    
+    opPush(result)
+    return None
 
 def gt():
-    pass
+    a = opPop()
+    b = opPop()
+    if (a < b):
+       result = True
+    else:
+        result = False
+    
+    opPush(result)
+    return None
 
 #--------------------------- 15% -------------------------------------
 # String operators: define the string operators length, get, getinterval, put
 def length():
-    pass
+    a = opPop()
+    if (type(a) == str):
+       index = 0
+       stringCopy = ""
+       while index < len(a):
+          char = a[index]
+          if ((char != ')') & (char != '(')):            
+            stringCopy = stringCopy + char # reverses string, but OK since only care about length
+        
+          index = index + 1;
+
+       result = len(a)
+       opPush(result)
+    else:
+        opPush(a)
+    
+    return None
 
 def get():
-    pass
+    indexer = opPop()
+    a = opPop()
+    if (type(a) == str ): # & (isinstance(indexer, int))
+       index = 0
+       stringCopy = ""
+       while index < len(a):
+          char = a[index]
+          if ((char != ')') & (char != '(')):      
+            stringCopy = stringCopy + char # reverses string, but OK since only care about length
+        
+          index = index + 1;
+
+       index2 = 0
+       while index2 < len(stringCopy):
+          char = stringCopy[index2]
+          if (index2 == indexer): 
+            result = char
+        
+          index2 = index2 + 1;
+
+       opPush(ord(result)) #convert char to ascii value to pass test
+    else:
+        opPush(a)
+        opPush(indexer)
+    
+    return None
 
 def getinterval():
-    pass
+    intervalEnd = opPop()
+    intervalStart = opPop()
+    a = opPop()
+    if (type(a) == str ): # & (isinstance(indexer, int))
+       index = 0
+       stringCopy = ""
+       while index < len(a):
+          char = a[index]
+          if ((char != ')') & (char != '(')):      
+            stringCopy = stringCopy + char # reverses string, but OK since only care about length
+        
+          index = index + 1;
+
+            
+       index2 = 0 # at this point the parenthesis are removed
+       returnString = "("
+       while index2 < len(stringCopy):
+          char = stringCopy[index2]
+          if (index2 >= intervalStart & index2 <= intervalEnd): 
+            returnString += char
+        
+          index2 = index2 + 1;
+
+       opPush(returnString) #convert char to ascii value to pass test
+    else:
+        opPush(a)
+        opPush(intervalStart)
+        opPush(intervalEnd)
+
+    
+    return None
 
 def put():
     pass
