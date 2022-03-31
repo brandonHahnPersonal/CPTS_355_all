@@ -1,9 +1,11 @@
+#PROGRAM NAME: HW4
+#AUTHOR: Brandon Hahn
+#DATE COMPLETED: 3/30/2022
+#DESCRIPTION: This is a python file that holds the methods created for
+    #postscript part 1 in CPTS 355
+
 #------------------------- 10% -------------------------------------
 # The operand stack: define the operand stack and its operations
-
-from ast import Num
-from tokenize import Number
-
 
 opstack = []  #assuming top of the stack is the end of the list
 
@@ -43,6 +45,7 @@ def dictPush(d):
     #“begin” operator is called. “begin” should pop the empty dictionary from
     #the opstack and push it onto the dictstack by calling dictPush.
     dictstack.append(d)
+    return None
 
 def define(name, value):
     #add name:value pair to the top dictionary in the dictionary stack.
@@ -51,6 +54,7 @@ def define(name, value):
     #call the “define” function.
     newDictItem = {name: value}
     dictPush(newDictItem)
+    return None
 
 def lookup(name):
     # return the value associated with name
@@ -66,7 +70,7 @@ def lookup(name):
     print()
     print(Error_000_message)
     print()
-    return ();
+    return None;
 
 
 
@@ -77,10 +81,10 @@ def lookup(name):
 def add():
     a = opPop()
     b = opPop()
-    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
+    if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))): # if the variables are addable
         result = a + b
         opPush(result)
-    else:
+    else: # if they are not of type num, restore the opstack
         opPush(b)
         opPush(a)
     
@@ -114,7 +118,7 @@ def div():
     a = opPop()
     b = opPop()
     if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
-        result = b/a
+        result = b/a #division operation
         opPush(result)
     else:
         opPush(b)
@@ -126,7 +130,7 @@ def mod():
     a = opPop()
     b = opPop()
     if (((type(a) == float) | (type(a) == int)) and ((type(b) == float) | (type(b) == int))):
-       result = b % a
+       result = b % a #python built in modulus
        opPush(result)
     else:
         opPush(b)
@@ -143,7 +147,7 @@ def eq():
     else:
         result = False
     
-    opPush(result)
+    opPush(result) # results are stored on the opstack
     return None
 
 def lt():
@@ -330,51 +334,54 @@ def exch():
 
 def roll():
     #get parameters from opstack
-    i = opPop()
-    n = opPop()
+    if (len(opstack)>2): 
+        i = opPop()
+        n = opPop()
 
-    if(i < len(opstack)):
-        if (n <2):
-            None
-        elif (n ==2):
-            whileCount = 0;
-            while(whileCount < i):
-                exch()
-                whileCount += 1
+        if(i < len(opstack)):
+            if (n <2):
+                None
+            elif (n ==2):
+                whileCount = 0;
+                while(whileCount < i):
+                    exch()
+                    whileCount += 1
+            else:
+                #peel off elements I am going to shift
+                index =1
+                manipList = []
+                while(index <= n):
+                    manipList.append(opstack[-index])
+                    index += 1
+
+                manipList.reverse()
+
+                #elements that are being rolled get popped from the otstack
+                popper = 0 
+                while(popper < n):
+                    opstack.pop()
+                    popper += 1
+                
+                #perform rolling
+                newCount = 0
+                while(newCount < i):
+                    lastElem = manipList[-1]
+                    manipList.insert(0,lastElem) #put at beginning
+                    manipList.pop() # remove last element
+                    newCount += 1
+
+                tempList = opstack + manipList
+                opstack.clear()
+
+                #recreate the opstack with correct values
+                finalCount = 0
+                while(finalCount < len(tempList)):
+                    opPush(tempList[finalCount])
+                    finalCount += 1
+        
         else:
-            #peel off elements I am going to shift
-            index =1
-            manipList = []
-            while(index <= n):
-                manipList.append(opstack[-index])
-                index += 1
-
-            manipList.reverse()
-
-            popper = 0
-            while(popper < n):
-                opstack.pop()
-                popper += 1
-            
-            newCount = 0
-            while(newCount < i):
-                lastElem = manipList[-1]
-                manipList.insert(0,lastElem) #put at beginning
-                manipList.pop() # remove last element
-                newCount += 1
-
-            tempList = opstack + manipList
-            opstack.clear()
-
-            finalCount = 0
-            while(finalCount < len(tempList)):
-                opPush(tempList[finalCount])
-                finalCount += 1
-
-    
-    else:
-        opPush(n)
-        opPush(i)
+            opPush(n)
+            opPush(i)
 
     return None
 
