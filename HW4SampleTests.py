@@ -146,6 +146,15 @@ class HW4Tests(unittest.TestCase):
         dup()
         self.assertEqual(len(opstack),2)
 
+    def testCopy(self):
+        opstack.clear()
+        opPush(5)
+        opPush(4)
+        opPush(3)
+        opPush(2)
+        copy()
+        self.assertEqual(len(opstack),8)
+
     def testPop(self):
         opstack.clear()
         opPush(1)

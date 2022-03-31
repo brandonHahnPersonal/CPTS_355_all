@@ -236,12 +236,13 @@ def getinterval():
        returnString = "("
        while index2 < len(stringCopy):
           char = stringCopy[index2]
-          if (index2 >= intervalStart & index2 <= intervalEnd): 
-            returnString += char
+          if (index2 >= intervalStart):
+            if (index2 < intervalEnd): 
+                returnString += char
         
           index2 = index2 + 1;
 
-       opPush(returnString) #convert char to ascii value to pass test
+       opPush(returnString+")") #add closing paranthesis
     else:
         opPush(a)
         opPush(intervalStart)
@@ -251,27 +252,89 @@ def getinterval():
     return None
 
 def put():
-    pass
+    inputChar = opPop()
+    destination = opPop()
+    a = opPop()
+    if (type(a) == str ): # & (isinstance(indexer, int))
+       index = 0
+       stringCopy = ""
+       while index < len(a):
+          char = a[index]
+          if ((char != ')') & (char != '(')):      
+            stringCopy = stringCopy + char # reverses string, but OK since only care about length
+        
+          index = index + 1;
+
+            
+       index2 = 0 # at this point the parenthesis are removed
+       returnString = "("
+       while index2 < len(stringCopy):
+          char = stringCopy[index2]
+          if (index2 == destination):
+            returnString += chr(inputChar)
+
+          else:
+              returnString += char
+        
+          index2 = index2 + 1;
+
+       opPush(returnString+")") #add closing paranthesis
+    else:
+        opPush(a)
+        opPush(destination)
+        opPush(inputChar)
+
+    
+    return None
 
 #--------------------------- 25% -------------------------------------
 # Define the stack manipulation and print operators: dup, copy, pop, clear, exch, roll, stack
 def dup():
-    pass
+    inputVal = opPop()
+    opPush(inputVal)
+    opPush(inputVal)
 
-def copy():
-    pass
+    return None
+
+def copy(): #copy the opstack?
+    element = 0
+    stopPoint = len(opstack)
+    while (element < stopPoint):
+        opPush(opstack[element])
+        element += 1
+    
+    return None
 
 def pop():
-    pass
+    opPop();
+
+    return None
 
 def clear():
-    pass
+    element = 0
+    stopPoint = len(opstack)
+    while (element < stopPoint):
+        opPop()
+        element += 1
+    
+    return None
 
 def exch():
-    pass
+    a = opPop()
+    b = opPop()
+
+    opPush(a)
+    opPush(b)
+
+    return None
 
 def roll():
-    pass
+    #get parameters from opstack
+    i = opPop()
+    n = opPop()
+
+    
+
 
 def stack():
     pass
