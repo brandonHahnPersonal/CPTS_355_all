@@ -707,6 +707,20 @@ class HW4Tests(unittest.TestCase):
 
     ####################################################################################
 
+    def testEnd(self):
+            opstack.clear()
+            dictPush(5)
+            end()
+
+    def testEnd2(self):
+            opstack.clear()
+            dictPush(5)
+            dictPush(6)
+            end()
+
+            self.assertEqual(dictPop(),5)        
+
+    ####################################################################################
 
 if __name__ == '__main__':
     unittest.main()

@@ -430,8 +430,12 @@ def begin():
             opPush(top)
     return None
 
+#pop the top dictionary from the dictionary stack and  discard it
 def end():
-    pass
+    if(len(dictstack) > 0):
+        dictPop()
+       
+    return None
 
 def psDef():
     #pop 2 from op stack, call define to put a tuple onto dict stack
