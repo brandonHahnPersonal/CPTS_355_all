@@ -182,7 +182,7 @@ def length():
         
           index = index + 1;
 
-       result = len(a)
+       result = len(stringCopy)
        opPush(result)
     else:
         opPush(a)
@@ -333,11 +333,59 @@ def roll():
     i = opPop()
     n = opPop()
 
+    if(i < len(opstack)):
+        if (n <2):
+            None
+        elif (n ==2):
+            whileCount = 0;
+            while(whileCount < i):
+                exch()
+                whileCount += 1
+        else:
+            #peel off elements I am going to shift
+            index =1
+            manipList = []
+            while(index <= n):
+                manipList.append(opstack[-index])
+                index += 1
+
+            manipList.reverse()
+
+            popper = 0
+            while(popper < n):
+                opstack.pop()
+                popper += 1
+            
+            newCount = 0
+            while(newCount < i):
+                lastElem = manipList[-1]
+                manipList.insert(0,lastElem) #put at beginning
+                manipList.pop() # remove last element
+                newCount += 1
+
+            tempList = opstack + manipList
+            opstack.clear()
+
+            finalCount = 0
+            while(finalCount < len(tempList)):
+                opPush(tempList[finalCount])
+                finalCount += 1
+
     
+    else:
+        opPush(n)
+        opPush(i)
+
+    return None
 
 
 def stack():
-    pass
+    count = 1
+    while(count < len(opstack)+1):
+        print(opstack[-count])
+        count += 1
+
+    return None
 
 #--------------------------- 20% -------------------------------------
 # Define the dictionary manipulation operators: psDict, begin, end, psDef
@@ -345,11 +393,22 @@ def stack():
 # Note: The psDef operator will pop the value and name from the opstack and call your own "define" operator (pass those values as parameters).
 # Note that psDef()won't have any parameters.
 
-def psDict():
-    pass
+#pops the initial size of the dictionary from the stack, and pushes a brand-new empty dictionary onto the operand stack
+def psDict():    
+    if(len(opstack) > 0):
+        opPop();
+    opPush({}) #empty dictionary is pushed onto the stack
+    return None
 
+#begin operator pops a dictionary from the top of the operand stack and pushes it on the dictionary stack
 def begin():
-    pass
+    if(len(opstack) > 0):
+        top = opPop()
+        if(type(top) == dict):
+            dictPush(top)
+        else:
+            opPush(top)
+    return None
 
 def end():
     pass

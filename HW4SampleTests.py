@@ -184,6 +184,17 @@ class HW4Tests(unittest.TestCase):
         opPush(3)
         roll()
         self.assertListEqual(opstack,[1,2,4,3])
+
+    def testRoll2(self):
+        opstack.clear()
+        opPush(1)
+        opPush(2)
+        opPush(3)
+        opPush(4)
+        opPush(3)
+        opPush(1)
+        roll()
+        self.assertListEqual(opstack,[1,4,2,3])
     
     def testStack(self):
         pass # unsure how to test print, maybe have it return instead
