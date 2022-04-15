@@ -114,9 +114,16 @@ class HW5Tests(unittest.TestCase):
 
     def testLookup(self):
         dictstack.clear()  
+        
+        opPush("/n1")       
+        opPush("(TEST)")  
+        psDef()
+        
         opPush("/n1")       
         opPush("(hornswaggle)")  
         psDef()
+
+
         self.assertEqual(lookup("n1"),"(hornswaggle)")
         pass
 
