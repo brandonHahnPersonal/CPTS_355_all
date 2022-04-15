@@ -314,11 +314,13 @@ def dup():
     return None
 
 def copy(): #copy the opstack?
-    element = 0
-    stopPoint = len(opstack)
-    while (element < stopPoint):
-        opPush(opstack[element])
-        element += 1
+    #Copy pops an integer count from stack, copies count characters and pushes them back to stack.
+    numToCopy = opPop()
+    end = len(opstack)
+    countStart = end - numToCopy
+    while (countStart < end):
+        opPush(opstack[countStart])
+        countStart += 1
     
     return None
 

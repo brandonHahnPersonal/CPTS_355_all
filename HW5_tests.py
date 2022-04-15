@@ -118,7 +118,7 @@ class HW5Tests(unittest.TestCase):
         opPush("/n1")       
         opPush("(TEST)")  
         psDef()
-        
+
         opPush("/n1")       
         opPush("(hornswaggle)")  
         psDef()
@@ -481,26 +481,23 @@ class HW5Tests(unittest.TestCase):
 
     def testCopy(self):
         opstack.clear()
-        opPush(5)
-        opPush(4)
+        opPush(1)
+        opPush(2)
         opPush(3)
+        opPush(4)
+        opPush(5)
         opPush(2)
         copy()
-        self.assertEqual(len(opstack),8)
+        self.assertEqual(len(opstack),7)
 
     def testCopy2(self):
-        opstack.clear()
-        copy()
-        self.assertEqual(len(opstack),0)
-
-    def testCopy3(self):
         opstack.clear()
         opPush(5.0)
         opPush(4)
         opPush('String')
         opPush(2)
         copy()
-        self.assertEqual(len(opstack),8)
+        self.assertEqual(len(opstack),5)
 
     ####################################################################################
 
