@@ -254,7 +254,7 @@ def getinterval():
        while index2 < len(stringCopy):
           char = stringCopy[index2]
           if (index2 >= intervalStart):
-            if (index2 < intervalEnd): 
+            if (index2 < intervalStart+intervalEnd): 
                 returnString += char
         
           index2 = index2 + 1;
