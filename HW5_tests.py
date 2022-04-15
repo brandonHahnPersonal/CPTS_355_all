@@ -455,6 +455,21 @@ class HW5Tests(unittest.TestCase):
         put()
         self.assertEqual(opPop(),"(AptS355)")
 
+
+    def testPut4(self): 
+        opPush("(This is a test _)") 
+        dup() 
+        opPush("/s") 
+        exch() 
+        psDef() 
+        dup() 
+        opPush(15) 
+        opPush(48) 
+        put() 
+        if lookup("s") != "(This is a test 0)" or opPop()!= "(This is a test 0)": 
+            return False 
+        return True         
+
     ####################################################################################
 
     def testDup(self):

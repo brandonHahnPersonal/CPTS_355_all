@@ -7,6 +7,10 @@
 #------------------------- 10% -------------------------------------
 # The operand stack: define the operand stack and its operations
 
+from ast import Return
+from genericpath import exists
+
+
 opstack = []  #assuming top of the stack is the end of the list
 
 # Now define the helper functions to push and pop values on the opstack
@@ -272,6 +276,7 @@ def put():
     inputChar = opPop()
     destination = opPop()
     a = opPop()
+    oldA = a
     if (type(a) == str ): # & (isinstance(indexer, int))
        index = 0
        stringCopy = ""
@@ -295,13 +300,26 @@ def put():
         
           index2 = index2 + 1;
 
-       opPush(returnString+")") #add closing paranthesis
+       returnString = returnString+")"
+
+       opPush(returnString) #add closing paranthesis
     else:
         opPush(a)
         opPush(destination)
         opPush(inputChar)
 
-    
+    #addition for HW 5, update the dicstack and opstack once put a new element into a string.
+    #search dicstack and update
+    for dictionary in dictstack:
+        for key in dictionary:
+            if dictionary[key] == oldA:
+                dictionary[key] = returnString
+
+#search opstack and update
+    for item in opstack:
+        if item == oldA:
+            item = returnString
+
     return None
 
 #--------------------------- 25% -------------------------------------
