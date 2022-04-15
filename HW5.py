@@ -73,7 +73,7 @@ def lookup(name):
     # return the value associated with name
     # What is your design decision about what to do when there is no definition for “name”? If “name” is not defined, your program should not break, but should give an appropriate error message.
     trueName = '/' + name
-    for item in dictstack:
+    for item in dictstack[::-1]: #start iterating through dictstack at the TOP
         if trueName in item:
             returnVal =  item.get(trueName) #actual items have the / in front.
             return returnVal
