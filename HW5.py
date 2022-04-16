@@ -543,26 +543,104 @@ def psDef():
 # function of the whole project, but it will have a very regular and obvious
 # structure if you've followed the plan of the assignment.
 #
+def myIf():
+    instruction = opPop()
+    condition = opPop()
+
+    if condition == True:
+        interpretSPS(instruction)
+    else:
+        opPush(False)
+        opPush(instruction)
+
+def myIfElse():
+    instructionFalse = opPop()
+    instructionTrue = opPop()
+    condition = opPop()
+
+    if condition == True:
+        interpretSPS(instructionTrue)
+    else:
+        interpretSPS(instructionFalse)
+
 def interpretSPS(code): # code is a code array. read in element at a time, operating on them.
-    for item in code:
-        #if keyword, then use that action
-        if item == 'pop':
-            opPop()
-        elif item == 'def':
-            define()
-        elif item == 'dup':
-            dup()
-        elif item == 'mul':
+    try: #try to iterate. If it is not iterable, then just push item to opstack
+        for item in code:
+            #if keyword, then use that action
+            if item == 'pop':
+                opPop()
+            elif item == 'def':
+                value = opPop()
+                name = opPop()
+                
+                define(name, value)
+            elif item == 'dup':
+                dup()
+            elif item == 'add':
+                add()
+            elif item == 'sub':
+                sub()
+            elif item == 'mul':
+                mul()
+            elif item == 'div':
+                div()
+            elif item == 'mod':
+                mod()
+            elif item == 'eq':
+                eq()
+            elif item == 'lt':
+                lt()
+            elif item == 'gt':
+                gt()
+            elif item == 'length':
+                length()
+            elif item == 'get':
+                get()
+            elif item == 'getinterval':
+                getinterval()
+            elif item == 'put':
+                put()
+            elif item == 'dup':
+                dup()
+            elif item == 'copy':
+                copy()
+            elif item == 'pop':
+                opPop()
+            elif item == 'clear':
+                clear()
+            elif item == 'exch':
+                exch()
+            elif item == 'roll':
+                roll()
+            elif item == 'stack':
+                stack()
+            elif item == 'if':
+                myIf()
+            elif item == 'ifelse':
+                myIfElse()
+            elif item == 'dict':
+                psDict()
+            elif item == 'begin':
+                begin()
+            elif item == 'end':
+                end()
+            elif isinstance(item, str):
+                if item[0] == '/' or item[0] == '(':
+                    opPush(item)
+                elif dictstack != []:
+                    dictValue = lookup(item)
+                    interpretSPS(dictValue)
+
+            
+            
 
 
+            #constant values get pushed to opstack, be they in arrays or solos
+            #the forward slash is an identifier for dict keys
+            elif isinstance(item, int) or isinstance(item, list) or isinstance(item, bool):
+                opPush(item)
+            else:
+                opPush(item)
+    except:
+        opPush(code)
 
-        #constant values get pushed to opstack, be they in arrays or solos
-        #the forward slash is an identifier for dict keys
-        if isinstance(item, int) or isinstance(item, list) or isinstance(item, bool) or item[0] == '/':
-            opPush(item)
-
-
-
-        #dicts -> opstack
-
-        #

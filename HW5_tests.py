@@ -820,6 +820,15 @@ class HW5Tests(unittest.TestCase):
     
                                    
     ####################################################################################
+    def myTest(self):
+        clear()
+        opPush('/square')
+        opPush('[dup mul]')
+        define()
+        opPush('(square)')
+        opPush(4)
+        lookup('square')
+
 
 
     def testInterpreter(self):
@@ -834,7 +843,27 @@ class HW5Tests(unittest.TestCase):
             stack
             """
         clear()
+        print()
         interpreter(input1)
+        pass
+
+    def testInterpreter2(self):
+        input2 = """ 
+            (facto) dup length /n exch def 
+            /fact { 
+                0 dict begin 
+                /n exch def 
+                n 2 lt 
+                { 1} 
+                {n 1 sub fact n mul } 
+                ifelse 
+                end  
+            } def 
+            n fact stack 
+            """ 
+        clear()
+        print()
+        interpreter(input2)
         pass
    
 
