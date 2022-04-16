@@ -397,9 +397,12 @@ def put():
                 dictionary[key] = returnString
 
 #search opstack and update
-    for item in opstack:
-        if item == oldA:
-            item = returnString
+    indexer = 0
+    while indexer < len(opstack):
+        if opstack[indexer] == oldA:
+            opstack[indexer] = returnString
+        
+        indexer = indexer + 1
 
     return None
 
@@ -470,11 +473,20 @@ def roll():
                 
                 #perform rolling
                 newCount = 0
-                while(newCount < i):
-                    lastElem = manipList[-1]
-                    manipList.insert(0,lastElem) #put at beginning
-                    manipList.pop() # remove last element
-                    newCount += 1
+                if i > 0 :
+                    while(newCount < i):
+                        lastElem = manipList[-1]
+                        manipList.insert(0,lastElem) #put at beginning
+                        manipList.pop() # remove last element
+                        newCount += 1
+                elif i < 0:
+                    while(i < newCount):
+                        firstElem = manipList[0]
+                        manipList.append(firstElem)
+                        manipList.reverse()
+                        manipList.pop() # remove last element
+                        manipList.reverse()
+                        newCount -= 1
 
                 tempList = opstack + manipList
                 opstack.clear()
@@ -563,6 +575,18 @@ def myIfElse():
     else:
         interpretSPS(instructionFalse)
 
+def myFor():
+    instruction = opPop()
+    end = opPop()
+    i = opPop()
+    start = opPop()
+    loops = abs((end - start))
+
+    for numberOfTimes in range(loops + 1):
+        opPush(start)
+        interpretSPS(instruction)
+        start += i
+
 def interpretSPS(code): # code is a code array. read in element at a time, operating on them.
     try: #try to iterate. If it is not iterable, then just push item to opstack
         for item in code:
@@ -618,8 +642,11 @@ def interpretSPS(code): # code is a code array. read in element at a time, opera
                 myIf()
             elif item == 'ifelse':
                 myIfElse()
+            elif item == 'for':
+                myFor()                
             elif item == 'dict':
                 psDict()
+                opPop()
             elif item == 'begin':
                 begin()
             elif item == 'end':

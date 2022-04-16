@@ -866,7 +866,63 @@ class HW5Tests(unittest.TestCase):
         interpreter(input2)
         pass
    
+    def testInterpreter3(self):
+        input3 = """ 
+            /fact{ 
+            0 dict 
+                    begin 
+                            /n exch def 
+                            1 
+                            n -1 1 {mul} for 
+                    end 
+            } def 
+            6 
+            fact 
+            stack 
+        """ 
+        clear()
+        print()
+        interpreter(input3)
+        pass
 
+    def testInterpreter4(self):
+        input4 = """ 
+        /lt6 { 6 lt } def  
+        1 2 3 4 5 6 4 -3 roll     
+        dup dup lt6 {mul mul mul} if 
+        stack  
+        clear 
+        """ 
+        clear()
+        print()
+        interpreter(input4)
+        pass    
+
+    def testInterpreter5(self):
+        input5 = """ 
+            (CptS355_HW5) 4 3 getinterval  
+            (355) eq  
+            {(You_are_in_CptS355)} if 
+            stack  
+            """ 
+        clear()
+        print()
+        interpreter(input5)
+        pass    
+
+    def testInterpreter6(self):
+        input6 = """ 
+            /pow2 {/n exch def  
+                (pow2_of_n_is) dup 8 n 48 add put  
+                    1 n -1 1 {pop 2 mul} for   
+                } def 
+            (Calculating_pow2_of_9) dup 20 get 48 sub pow2 
+            stack 
+            """ 
+        clear()
+        print()
+        interpreter(input6)
+        pass    
 
 if __name__ == '__main__':
     unittest.main()
