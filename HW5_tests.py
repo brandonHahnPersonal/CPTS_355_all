@@ -741,6 +741,104 @@ class HW5Tests(unittest.TestCase):
 
     ####################################################################################
 
+
+    def testParse(self):
+        input1 = """ 
+            /square { 
+                dup mul 
+            } def  
+            (square) 
+            4 square  
+            dup 16 eq  
+            {(pass)} {(fail)} ifelse 
+            stack  
+            """
+        self.assertEqual(parse(tokenize(input1)),['/square', ['dup', 'mul'], 'def', '(square)', 4, 'square', 'dup', 16, 'eq', ['(pass)'], ['(fail)'], 'ifelse', 'stack'] )
+
+    def testParse2(self):
+        input2 = """ 
+            (facto) dup length /n exch def 
+            /fact { 
+                0 dict begin 
+                /n exch def 
+                n 2 lt 
+                { 1} 
+                {n 1 sub fact n mul } 
+                ifelse 
+                end  
+            } def 
+            n fact stack 
+            """ 
+        self.assertEqual(parse(tokenize(input2)),['(facto)', 'dup', 'length', '/n', 'exch', 'def', '/fact', [0, 'dict', 'begin', '/n', 'exch', 'def', 'n', 2, 'lt', [1], ['n', 1, 'sub', 'fact', 'n', 'mul'], 'ifelse', 'end'], 'def', 'n', 'fact', 'stack'] )
+
+    def testParse3(self):
+        input3 = """ 
+            /fact{ 
+            0 dict 
+                    begin 
+                            /n exch def 
+                            1 
+                            n -1 1 {mul} for 
+                    end 
+            } def 
+            6 
+            fact 
+            stack 
+        """ 
+        self.assertEqual(parse(tokenize(input3)),['/fact', [0, 'dict', 'begin', '/n', 'exch', 'def', 1, 'n', -1, 1, ['mul'], 'for', 'end'], 'def', 6, 'fact', 'stack']  )
+
+    def testParse4(self):
+        input4 = """ 
+        /lt6 { 6 lt } def  
+        1 2 3 4 5 6 4 -3 roll     
+        dup dup lt6 {mul mul mul} if 
+        stack  
+        clear 
+        """ 
+        self.assertEqual(parse(tokenize(input4)),['/lt6', [6, 'lt'], 'def', 1, 2, 3, 4, 5, 6, 4, -3, 'roll', 'dup', 'dup', 'lt6', ['mul', 'mul', 'mul'], 'if', 'stack', 'clear'] )
+    
+
+    def testParse5(self):
+        input5 = """ 
+            (CptS355_HW5) 4 3 getinterval  
+            (355) eq  
+            {(You_are_in_CptS355)} if 
+            stack  
+            """ 
+        self.assertEqual(parse(tokenize(input5)),['(CptS355_HW5)', 4, 3, 'getinterval', '(355)', 'eq', ['(You_are_in_CptS355)'], 'if', 'stack'] )
+    
+    def testParse6(self):
+        input6 = """ 
+            /pow2 {/n exch def  
+                (pow2_of_n_is) dup 8 n 48 add put  
+                    1 n -1 1 {pop 2 mul} for   
+                } def 
+            (Calculating_pow2_of_9) dup 20 get 48 sub pow2 
+            stack 
+            """ 
+        self.assertEqual(parse(tokenize(input6)),['/pow2', ['/n', 'exch', 'def', '(pow2_of_n_is)', 'dup', 8, 'n', 48, 'add', 'put', 1, 'n', -1, 1, ['pop', 2, 'mul'], 'for'], 'def', '(Calculating_pow2_of_9)', 'dup', 20, 'get', 48, 'sub', 'pow2', 'stack'])
+    
+                                   
+    ####################################################################################
+
+
+    def testInterpreter(self):
+        input1 = """ 
+            /square { 
+                dup mul 
+            } def  
+            (square) 
+            4 square  
+            dup 16 eq  
+            {(pass)} {(fail)} ifelse 
+            stack  
+            """
+        clear()
+        interpreter(input1)
+        pass
+   
+
+
 if __name__ == '__main__':
     unittest.main()
 

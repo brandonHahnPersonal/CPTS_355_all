@@ -22,6 +22,7 @@ def groupMatching2(it):
             res.append(groupMatching2(it))
         else:
             res.append(c)
+
     return False
 
 
@@ -130,4 +131,3 @@ input6 = """
 
 print(tokenize(input1))
 print(parse(tokenize(input1)))
-

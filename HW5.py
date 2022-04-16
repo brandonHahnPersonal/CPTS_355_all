@@ -1,15 +1,119 @@
 #PROGRAM NAME: HW5
 #AUTHOR: Brandon Hahn
-#DATE COMPLETED: 3/30/2022
-#DESCRIPTION: This is a python file that holds the methods created for
-    #postscript part 1 in CPTS 355
+import re
+
+def tokenize(s):
+    return re.findall("/?[a-zA-Z()][a-zA-Z0-9_()]*|[-]?[0-9]+|[}{]+|%.*|[^ \t\n]", s)
+
+
+# complete this function
+# The it argument is an iterator.
+# The sequence of return characters should represent a list of properly nested
+# tokens, where the tokens between '{' and '}' is included as a sublist. If the
+# parenteses in the input iterator is not properly nested, returns False.
+def groupMatching2(it):
+    res = []
+    for c in it:
+        if c == '}':
+            return res
+        elif c=='{':
+            # Note how we use a recursive call to group the tokens inside the
+            # inner matching parenthesis.
+            # Once the recursive call returns the code array for the inner
+            # paranthesis, it will be appended to the list we are constructing
+            # as a whole.
+            res.append(groupMatching2(it))
+        else:
+            tempC = tryHelperMethod(c)
+            res.append(tempC)
+
+    return False
+
+
+# Complete this function
+# Function to parse a list of tokens and arrange the tokens between { and } braces
+# as code-arrays.
+# Properly nested parentheses are arranged into a list of properly nested lists.
+def parse(L):
+    res = []
+    it = iter(L)
+    for c in it:
+        if c=='}':  #non matching closing paranthesis; return false since there is
+                    # a syntax error in the Postscript code.
+            return False
+        elif c=='{':
+            res.append(groupMatching2(it))
+        else:
+            tempC = tryHelperMethod(c)
+            res.append(tempC)
+
+    return res
+
+def tryHelperMethod(a):
+    temp = a
+    try:
+        temp = int(temp)    #if it can create an integer, it does!
+    except:
+        pass
+    if temp == 'true':
+        temp = True 
+    elif temp == 'false':
+        temp = False   
+    elif temp == 'TRUE':
+        temp = True 
+    elif temp == 'FALSE':
+        temp = False  
+    elif temp == 'True':
+        temp = True 
+    elif temp == 'False':
+        temp = False  
+
+    return temp
+
+
+# Write the necessary code here; again write
+# auxiliary functions if you need them. This will probably be the largest
+# function of the whole project, but it will have a very regular and obvious
+# structure if you've followed the plan of the assignment.
+#
+def interpretSPS(code): # code is a code array. read in element at a time, operating on them.
+    for item in code:
+        #if keyword, then use that action
+        if item == 'pop':
+            opPop()
+        elif item == 'def':
+            define()
+
+
+        #constant values get pushed to opstack, be they in arrays or solos
+        #the forward slash is an identifier for dict keys
+        if isinstance(item, int) or isinstance(item, list) or isinstance(item, bool) or item[0] == '/':
+            opPush(item)
+
+
+
+        #dicts -> opstack
+
+        #
+
+
+# Copy this to your HW4_part2.py file>
+def interpreter(s): # s is a string
+    interpretSPS(parse(tokenize(s)))
+
+
+#clear opstack and dictstack
+def clear():
+    del opstack[:]
+    del dictstack[:]
+
+
+
+
+
 
 #------------------------- 10% -------------------------------------
 # The operand stack: define the operand stack and its operations
-
-from ast import Return
-from genericpath import exists
-
 
 opstack = []  #assuming top of the stack is the end of the list
 
@@ -347,14 +451,6 @@ def pop():
 
     return None
 
-def clear():
-    element = 0
-    stopPoint = len(opstack)
-    while (element < stopPoint):
-        opPop()
-        element += 1
-    
-    return None
 
 def exch():
     a = opPop()
