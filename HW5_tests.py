@@ -825,13 +825,13 @@ class HW5Tests(unittest.TestCase):
     def testInterpreter(self):
         input1 = """ 
             /square { 
-                dup mul 
+           dup mul 
             } def  
             (square) 
             4 square  
             dup 16 eq  
             {(pass)} {(fail)} ifelse 
-            stack  
+            stack
             """
         clear()
         interpreter(input1)

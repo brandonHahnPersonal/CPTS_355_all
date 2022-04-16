@@ -71,30 +71,7 @@ def tryHelperMethod(a):
     return temp
 
 
-# Write the necessary code here; again write
-# auxiliary functions if you need them. This will probably be the largest
-# function of the whole project, but it will have a very regular and obvious
-# structure if you've followed the plan of the assignment.
-#
-def interpretSPS(code): # code is a code array. read in element at a time, operating on them.
-    for item in code:
-        #if keyword, then use that action
-        if item == 'pop':
-            opPop()
-        elif item == 'def':
-            define()
 
-
-        #constant values get pushed to opstack, be they in arrays or solos
-        #the forward slash is an identifier for dict keys
-        if isinstance(item, int) or isinstance(item, list) or isinstance(item, bool) or item[0] == '/':
-            opPush(item)
-
-
-
-        #dicts -> opstack
-
-        #
 
 
 # Copy this to your HW4_part2.py file>
@@ -559,3 +536,33 @@ def psDef():
     tempName = opPop();
     define(tempName,tempValue)
     pass
+
+
+# Write the necessary code here; again write
+# auxiliary functions if you need them. This will probably be the largest
+# function of the whole project, but it will have a very regular and obvious
+# structure if you've followed the plan of the assignment.
+#
+def interpretSPS(code): # code is a code array. read in element at a time, operating on them.
+    for item in code:
+        #if keyword, then use that action
+        if item == 'pop':
+            opPop()
+        elif item == 'def':
+            define()
+        elif item == 'dup':
+            dup()
+        elif item == 'mul':
+
+
+
+        #constant values get pushed to opstack, be they in arrays or solos
+        #the forward slash is an identifier for dict keys
+        if isinstance(item, int) or isinstance(item, list) or isinstance(item, bool) or item[0] == '/':
+            opPush(item)
+
+
+
+        #dicts -> opstack
+
+        #
