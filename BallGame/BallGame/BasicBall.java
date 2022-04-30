@@ -12,6 +12,7 @@
 import java.awt.Color;
 
 public class BasicBall { 
+    protected int hits = 0;
     protected double rx, ry;         // position
     protected double vx, vy;         // velocity
     protected double radius;   // radius
@@ -58,7 +59,10 @@ public class BasicBall {
     
     public boolean isHit(double x, double y) {
     	if ((Math.abs(rx-x)<=radius) && (Math.abs(ry-y)<=radius))
+        {
+            hits = hits+1;
 			return true;
+        }
 		else return false; 
 
     }
@@ -69,6 +73,4 @@ public class BasicBall {
     public double getRadius() {
     	return radius;
     }
-
-
 }
