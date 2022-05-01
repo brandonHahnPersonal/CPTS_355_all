@@ -107,13 +107,17 @@ public class BallGame {
                 double x = StdDraw.mouseX();
                 double y = StdDraw.mouseY();
                 //TODO: check whether a ball is hit. Check each ball.  
-                for(int i = 0; i < numBallsinGame; i++)
+                for(int i = 0; i < numBalls; i++)
                 {
                     BasicBall volatileBall = (ballList.get(i));                    
                     if (volatileBall.isHit(x,y)) {
                     	volatileBall.reset();
                     	//TO DO: Update player statistics
                         test.score += volatileBall.getScore();
+                    }
+                    else
+                    {
+                        System.out.println(i);
                     }
                 } 
             }
@@ -128,7 +132,8 @@ public class BallGame {
             for(int i = 0; i < numBalls; i++)
             {
                 BasicBall volatileBall = ballList.get(i);                    
-                if (ballList.get(i).isOut == false) { 
+                if (ballList.get(i).isOut == false)
+                { 
                     volatileBall.draw();
                     numBallsinGame++;
                 }

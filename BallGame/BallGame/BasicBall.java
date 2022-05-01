@@ -46,7 +46,10 @@ public class BasicBall {
     		StdDraw.setPenColor(color);
     		StdDraw.filledCircle(rx, ry, radius);
     	} else
+        {
     		isOut = true;
+            //remove item from arraylist?
+        }
     	
     }
 
