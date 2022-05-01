@@ -56,7 +56,7 @@ public class BasicBall {
     public int reset() {
         rx = 0.0;
         ry = 0.0;  	
-        // TO DO: assign a random speed 
+        // TO DO: assign a random speed. Handled in isHit
         return 1;
     }
     

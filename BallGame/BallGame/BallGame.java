@@ -12,10 +12,13 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BallGame { 
 
     public static void main(String[] args) {
+
+        
   
     	// number of bouncing balls
     	int numBalls = Integer.parseInt(args[0]);
@@ -42,7 +45,7 @@ public class BallGame {
         {
             String name;
             int score;
-            int[] typeHit = {0,0,0};
+            int[] typeHit = {0,0,0,0};
         }
 
         Player test = new Player();
@@ -65,6 +68,7 @@ public class BallGame {
         String basic[] = {"basic"};
         String shrink[] = {"shrink"};
         String bounce[] = {"bounce"};
+        String split[] = {"split"};
 
 
         for (int i = 0; i <numBalls; i++)
@@ -77,6 +81,11 @@ public class BallGame {
             else if(ballTypes[i].equals(bounce[0]))
             {
                 BounceBall ball = new BounceBall(ballSizes[i], Color.YELLOW);
+                ballList.add(ball);
+            }
+            else if(ballTypes[i].equals(split[0]))
+            {
+                SplitBall ball = new SplitBall(ballSizes[i], Color.RED);
                 ballList.add(ball);
             }
             else
@@ -105,27 +114,51 @@ public class BallGame {
                 double x = StdDraw.mouseX();
                 double y = StdDraw.mouseY();
                 //TODO: check whether a ball is hit. Check each ball.  
-                for(int i = 0; i < numBalls; i++)
+                if (Math.abs(x) >= 0.05 && Math.abs(y) >= 0.05 )
                 {
-                    BasicBall volatileBall = (ballList.get(i));                    
-                    if (volatileBall.isHit(x,y)) {
-                    	volatileBall.reset();
-                    	//TO DO: Update player statistics
-                        test.score += volatileBall.getScore();
-                        if (ballTypes[i].equals(basic[0]))
-                        {
-                            test.typeHit[0] += 1;
+                    for(int i = 0; i < numBalls; i++)
+                    {
+                        BasicBall volatileBall = (ballList.get(i));                    
+                        if (volatileBall.isHit(x,y)) {
+                            if(ballTypes[i].equals(split[0]))
+                            {
+                                //create new
+                                double newRad = volatileBall.radius;
+                                Color newColor = volatileBall.color;
+                                SplitBall ball = new SplitBall(newRad, newColor);
+                                ballList.add(ball);
+                                test.typeHit[3] += 1;
+                                numBalls += 1;
+                                ballTypes = Arrays.copyOf(ballTypes, ballTypes.length + 1);
+                                ballTypes[ballTypes.length - 1] = "split";
+                                ball.reset();
+                            }
+                            volatileBall.reset();
+                            //TO DO: Update player statistics
+                            test.score += volatileBall.getScore();
+                            if (ballTypes[i].equals(basic[0]))
+                            {
+                                test.typeHit[0] += 1;
+                            }
+                            else if (ballTypes[i].equals(shrink[0]))
+                            {
+                                test.typeHit[1] += 1;
+                            }
+                            else if (ballTypes[i].equals(bounce[0]))
+                            {
+                                test.typeHit[2] += 1;
+                            }
                         }
-                        else if (ballTypes[i].equals(shrink[0]))
-                        {
-                            test.typeHit[1] += 1;
-                        }
-                        else if (ballTypes[i].equals(bounce[0]))
-                        {
-                            test.typeHit[2] += 1;
-                        }
+                    } 
+
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
-                } 
+                }
+
             }
                 
             numBallsinGame = 0;
@@ -167,17 +200,21 @@ public class BallGame {
             StdDraw.text(0, 0, "GAME OVER");
             //TO DO: print the rest of the player statistics
             String maxType;
-            if (test.typeHit[0] > test.typeHit[1] && test.typeHit[0] > test.typeHit[2])
+            if (test.typeHit[0] > test.typeHit[1] && test.typeHit[0] > test.typeHit[2] && test.typeHit[0] > test.typeHit[3])
             {
                 maxType = "Basic";
             }
-            else if (test.typeHit[1] > test.typeHit[0] && test.typeHit[1] > test.typeHit[2])
+            else if (test.typeHit[1] > test.typeHit[0] && test.typeHit[1] > test.typeHit[2] && test.typeHit[1] > test.typeHit[3])
             {
                 maxType = "Shrink";
             }
-            else if (test.typeHit[2] > test.typeHit[0] && test.typeHit[2] > test.typeHit[1])
+            else if (test.typeHit[2] > test.typeHit[0] && test.typeHit[2] > test.typeHit[1] && test.typeHit[2] > test.typeHit[3])
             {
                 maxType = "Bounce";
+            }
+            else if (test.typeHit[3] > test.typeHit[0] && test.typeHit[3] > test.typeHit[1] && test.typeHit[3] > test.typeHit[2])
+            {
+                maxType = "Split";
             }
             else
             {
