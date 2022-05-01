@@ -41,24 +41,6 @@ public class BounceBall extends BasicBall
         }
     }
 
-    public boolean isHit(double x, double y) {
-    	if ((Math.abs(rx-x)<=radius) && (Math.abs(ry-y)<=radius))
-        {
-            hits = hits+1;
-            System.out.println(hits);
-			return true;
-        }
-		else 
-        {
-            System.out.println(x + "," +y);
-            return false; 
-        }
-
-    }
-
-
-
-
     public int getScore() {
     	return 15;
     }

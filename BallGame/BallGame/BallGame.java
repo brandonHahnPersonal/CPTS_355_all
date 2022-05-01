@@ -42,7 +42,7 @@ public class BallGame {
         {
             String name;
             int score;
-            String typeHitMost;
+            int[] typeHit = {0,0,0};
         }
 
         Player test = new Player();
@@ -62,15 +62,13 @@ public class BallGame {
         // create colored balls 
         //TO DO: Create "numBalls" balls (of types given in "ballTypes" with sizes given in "ballSizes") and store them in an Arraylist
         ArrayList<BasicBall> ballList = new ArrayList<BasicBall>(); // Create an ArrayList object
+        String basic[] = {"basic"};
         String shrink[] = {"shrink"};
         String bounce[] = {"bounce"};
 
 
         for (int i = 0; i <numBalls; i++)
-        {
-            String type = ballTypes[i];
-            System.out.println(type);
-            
+        {            
             if(ballTypes[i].equals(shrink[0]))
             {
                 ShrinkBall ball = new ShrinkBall(ballSizes[i], Color.GREEN);
@@ -114,10 +112,18 @@ public class BallGame {
                     	volatileBall.reset();
                     	//TO DO: Update player statistics
                         test.score += volatileBall.getScore();
-                    }
-                    else
-                    {
-                        System.out.println(i);
+                        if (ballTypes[i].equals(basic[0]))
+                        {
+                            test.typeHit[0] += 1;
+                        }
+                        else if (ballTypes[i].equals(shrink[0]))
+                        {
+                            test.typeHit[1] += 1;
+                        }
+                        else if (ballTypes[i].equals(bounce[0]))
+                        {
+                            test.typeHit[2] += 1;
+                        }
                     }
                 } 
             }
@@ -157,9 +163,31 @@ public class BallGame {
             StdDraw.setPenColor(StdDraw.BLUE);
             Font font = new Font("Arial", Font.BOLD, 60);
             StdDraw.setFont(font);
+            StdDraw.clear(StdDraw.GRAY);
             StdDraw.text(0, 0, "GAME OVER");
             //TO DO: print the rest of the player statistics
-            StdDraw.text(0, 0.90, "Score: "+test.score);
+            String maxType;
+            if (test.typeHit[0] > test.typeHit[1] && test.typeHit[0] > test.typeHit[2])
+            {
+                maxType = "Basic";
+            }
+            else if (test.typeHit[1] > test.typeHit[0] && test.typeHit[1] > test.typeHit[2])
+            {
+                maxType = "Shrink";
+            }
+            else if (test.typeHit[2] > test.typeHit[0] && test.typeHit[2] > test.typeHit[1])
+            {
+                maxType = "Bounce";
+            }
+            else
+            {
+                maxType = "Tie";
+            }
+
+
+
+            StdDraw.text(0, 0.50, "Score: "+test.score);
+            StdDraw.text(0, -0.50,"Type hit most: " + maxType);
             StdDraw.show();
             StdDraw.pause(10);           
         }

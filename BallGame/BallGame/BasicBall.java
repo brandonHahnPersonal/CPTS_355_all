@@ -64,6 +64,8 @@ public class BasicBall {
     	if ((Math.abs(rx-x)<=radius) && (Math.abs(ry-y)<=radius))
         {
             hits = hits+1;
+            vx = StdRandom.uniform(-0.01, 0.01); //randomize speed on each hit
+            vy = StdRandom.uniform(-0.01, 0.01);
 			return true;
         }
 		else return false; 
