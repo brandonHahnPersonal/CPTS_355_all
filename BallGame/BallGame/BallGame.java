@@ -44,6 +44,7 @@ public class BallGame {
     	class Player
         {
             String name;
+            int hits;
             int score;
             int[] typeHit = {0,0,0,0};
         }
@@ -51,6 +52,7 @@ public class BallGame {
         Player test = new Player();
         test.name = "Test";
         test.score = 0;
+        test.hits = 0;
 
         
     	//number of active balls
@@ -120,6 +122,7 @@ public class BallGame {
                     {
                         BasicBall volatileBall = (ballList.get(i));                    
                         if (volatileBall.isHit(x,y)) {
+                            test.hits += 1;
                             if(ballTypes[i].equals(split[0]))
                             {
                                 //create new
@@ -187,7 +190,8 @@ public class BallGame {
             StdDraw.setFont(font);
             StdDraw.text(-0.65, 0.90, "Number of balls in game: "+ String.valueOf(numBallsinGame));
             //TO DO: print the rest of the player statistics
-            StdDraw.text(-0.65, -0.90, "Score: "+test.score);
+            StdDraw.text(-0.65, 0.80, "Score: "+test.score);
+            StdDraw.text(-0.65, 0.70, "Total hits: "+test.hits);
 
             StdDraw.show();
             StdDraw.pause(20);

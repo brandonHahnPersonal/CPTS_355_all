@@ -22,4 +22,8 @@ public class SplitBall extends BasicBall
 
     }
 
+    public int getScore() {
+    	return 10;
+    }
+
 }
